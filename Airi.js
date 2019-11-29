@@ -1,7 +1,7 @@
 var apiaiApp = require('apiai')("f5f50d38b1974c54be0a71328d8920e4");
 const fs = require('fs');
 const Discord = require('discord.js');
-//const {prefix, token}= require('./config.json');
+const {prefix, token}= require('./config.json');
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
@@ -75,9 +75,12 @@ bot.on('message', async message => {
 		request.end();
 	}
 
-	if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
+	//if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
 	
-	const args = message.content.slice(process.env.prefix.length).split(/ +/);
+	//const args = message.content.slice(process.env.prefix.length).split(/ +/);
+	const args = message.content.slice(prefix.length).split(/ +/);
+	
 	var command = args.shift().toLowerCase();
 
 	if (!bot.commands.has(command)) return;
@@ -108,7 +111,7 @@ var messageID;
 
 bot.on('raw', event =>
 {
-	console.log(event);
+	//console.log(event);
 	const eventName = event.t;
 	if(eventName === 'MESSAGE_CREATE')
 	{
@@ -173,4 +176,5 @@ bot.on('raw', event =>
 	
 
 
-bot.login(process.env.token);
+//bot.login(process.env.token);
+bot.login(token);

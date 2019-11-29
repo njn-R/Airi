@@ -15,15 +15,17 @@ module.exports =
                 mpaName = mpaName + " " + args[i];
             }
 
-            mongoose.connect('mongodb://nj:nj123456@ds029979.mlab.com:29979/heroku_0q4vv4cg',{
-                useNewUrlParser: true               
+            //mongoose.connect('mongodb://nj:nj123456@ds029979.mlab.com:29979/heroku_0q4vv4cg',{
+            mongoose.connect('mongodb://localhost/db',{
+                useNewUrlParser: true,
+                useUnifiedTopology: true              
             });
-
+            
             const newdocument = new Collection(
             {
                 _id: mongoose.Types.ObjectId(),         
                 mpaname: mpaName,
-                players: message.author.username,
+                players: message.member.displayName,
                 playercount: 1,
                 maxplayercount: 8,
                 time: message.createdAt
