@@ -16,7 +16,7 @@ module.exports =
             }
 
             mongoose.connect('mongodb://localhost/db',{
-                useNewUrlParser: true
+                useNewUrlParser: true               
             });
 
             const newdocument = new Collection(

@@ -1,0 +1,26 @@
+{
+  "name": "Airi",
+  "version": "1.0.0",
+  "description": "MPA Bot",
+  "main": "Airi.js",
+  "dependencies": {
+    "apiai": "^4.0.3",
+    "discord.js": "^11.5.1",
+    "mongoose": "^5.7.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/njn-R/Airi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/njn-R/Airi/issues"
+  },
+  "homepage": "https://github.com/njn-R/Airi#readme"
+}
