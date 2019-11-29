@@ -10,7 +10,7 @@ module.exports =
         execute(message, args)
         {         
             //Connect to database
-            mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds029979.mlab.com:29979/heroku_0q4vv4cg',{
+            mongoose.connect('mongodb://heroku_0q4vv4cg:nj364643@ds029979.mlab.com:29979/heroku_0q4vv4cg',{
                 useNewUrlParser: true,
                 useFindAndModify: false
                
