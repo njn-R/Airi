@@ -15,7 +15,7 @@ module.exports =
                 mpaName = mpaName + " " + args[i];
             }
 
-            mongoose.connect('mongodb://localhost/db',{
+            mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds029979.mlab.com:29979/heroku_0q4vv4cg',{
                 useNewUrlParser: true               
             });
 
