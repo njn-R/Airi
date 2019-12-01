@@ -41,8 +41,11 @@ module.exports =
                 //     var usertoadd = message.username;
                 // }
                
-                var usertoadd = message.member.displayName;
-    
+                //var temp =  message.mentions.members.first();
+                let temp = message.guild.member(message.mentions.users.first());
+                let usertoadd = temp.displayName;
+                //var usertoadd = temp.user.username;
+
                 if(usertoadd === null||usertoadd=== undefined)
                 {
                     return message.channel.send("User not found");
@@ -65,7 +68,7 @@ module.exports =
                 //     }
 
                 // });
-                let max = 0;
+                let max = 12;
             
                 Collection.findOneAndUpdate({'mpaname': args[0], 'playercount': {$lt: max}},{$push: {players: usertoadd},$inc: {playercount:1}}, (err,docs) =>
                 //Collection.findOneAndUpdate({'mpaname': args[0]},{$push: {players: usertoadd},$inc: {playercount:1}}, (err,docs) =>
@@ -73,8 +76,7 @@ module.exports =
                     if(err) 
                         console.log(err);
                     else 
-                    {
-                        console.log(docs);     
+                    {    
                         if(docs === null)
                         {
                             return message.channel.send("MPA is full!");    

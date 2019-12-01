@@ -16,8 +16,13 @@ module.exports =
                
             }); 
         
+                let length = args.length;
+                let i;
+                for(i = 0; i<length; i++)
+                {
 
-                Collection.findOneAndDelete({'mpaname': args[0]}, (err,docs) =>
+                
+                Collection.findOneAndDelete({'mpaname': args[i]}, (err,docs) =>
                 {
                     if(err) 
                         console.log(err);
@@ -28,9 +33,10 @@ module.exports =
                         {
                             return message.channel.send("MPA not found!"); 
                         }              
-                        message.channel.send("MPA Closed!");    
+                        message.channel.send(args[i] + " MPA Closed!");    
                     }
                 });
+            }
 
         }                    
 };

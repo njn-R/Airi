@@ -34,6 +34,14 @@ module.exports =
                 {
                         var EQimage = 'https://i.imgur.com/lMqNAdA.png';
                 }
+                else if(args == 'armada')
+                {
+                        var EQimage = 'https://i.imgur.com/5UQAw5e.png';
+                }
+                else if(args == 'armada2')
+                {
+                        var EQimage = 'https://i.imgur.com/LW71qBM.jpg';
+                }
                 else
                 {
                         var EQimage = 'https://i.imgur.com/aTMCx3T.jpg';
