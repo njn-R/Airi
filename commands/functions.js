@@ -13,6 +13,7 @@ module.exports ={
     checkplayercount: function (callback, args) 
     {          
             //Check if MPA is full
+            console.log(args);
             var query = Collection.findOne({ 'mpaname': args[0] });
             query.select('playercount maxplayercount');
             query.exec(function (err, Collection) {

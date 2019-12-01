@@ -8,7 +8,7 @@ const schema1 = mongoose.Schema({
     maxplayercount: Number,
     time: String,
 
-},{collection: 'collections'});
+},{collection: 'collections', strictQuery: true});
 
 
 module.exports = mongoose.model("Collection", schema1, "Collection");

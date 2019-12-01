@@ -30,6 +30,10 @@ module.exports =
                 {
                         var EQimage = 'https://i.imgur.com/DUH9rKa.png';
                 }
+                else if(args == 'dragon')
+                {
+                        var EQimage = 'https://i.imgur.com/lMqNAdA.png';
+                }
                 else
                 {
                         var EQimage = 'https://i.imgur.com/aTMCx3T.jpg';
