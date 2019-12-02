@@ -27,7 +27,7 @@ bot.on('message', async message => {
 	//if (message.content.indexOf('?') === 0) {
 	try{
 
-		if (message.channel.id == "591605442661318667" && !message.author.bot) {
+		if (message.channel.id == "649639369061171200" && !message.author.bot) {
 			// Get a substring to exclude the ! from the message
 			var text = message.content;
 			

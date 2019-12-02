@@ -18,7 +18,7 @@ module.exports =
                
         }); 
   
-                if(args.includes('persona'))
+                if(args.includes('persona') || args.includes('mask'))
                 {
                         var EQimage = 'https://i.imgur.com/eKOaQE0.jpg';
                 }
@@ -26,11 +26,11 @@ module.exports =
                 {
                         var EQimage = 'https://i.imgur.com/vQNMF02.png';
                 }
-                else if(args.includes('pd'))
+                else if(args.includes('pd') || args.includes('profound'))
                 {
                         var EQimage = 'https://i.imgur.com/DUH9rKa.png';
                 }
-                else if(args.includes('dragon'))
+                else if(args.includes('dragon') || args.includes('lizard'))
                 {
                         var EQimage = 'https://i.imgur.com/lMqNAdA.png';
                 }
@@ -57,7 +57,7 @@ module.exports =
                 {
                     if (err) return handleError(err);
                     let EQname = Collection.mpaname.charAt(0).toUpperCase() + Collection.mpaname.slice(1);
-
+                    
                     try
                     {
                         const mpaEmbed = new Discord.RichEmbed()
@@ -70,11 +70,12 @@ module.exports =
                         //.addField('Players in MPA', Collection.playercount+"/"+Collection.maxplayercount)
                         //.addBlankField()
                         .setColor('#0099ff')
-                        .addField('```Players in MPA '+"("+Collection.playercount+"/"+Collection.maxplayercount+")```", Collection.players, true)
+                        .addField('```Players in MPA '+"("+Collection.playercount+"/"+Collection.maxplayercount+")```", Collection.players, true)      
                         .setImage(EQimage)
                         //.addBlankField()
                         .setTimestamp()
-                        .setFooter('Type join to join mpa!');
+                        //.setFooter('Type >join MPA_Name to join mpa!');
+  
 
                         message.channel.send(mpaEmbed);
                     }

@@ -36,19 +36,40 @@ module.exports =
                 }
 
                 var query =  getPlayercount(args);
-                query.select('playercount maxplayercount');
+                query.select('playercount maxplayercount players');
                 query.exec(function(err,Collection)
                 {
                     if(err)
                         return console.log(err);
-                    console.log(Collection);
-                    checkMPAFull(Collection.playercount, Collection.maxplayercount);        
+                    
+                    
+                    var result = checkPlayer(Collection.players, usertoadd);   
+                      
+                    if(result === true)
+                    {   
+                        return message.channel.send("I already added that player!");
+                    }
+                    else
+                    {
+                        checkMPAFull(Collection.playercount, Collection.maxplayercount);
+                    } 
                 });
 
-
+                function checkPlayer(players, usertoadd)
+                {
+                            
+                        if(players.includes(usertoadd))
+                        {
+                            return true;
+                        }
+                        else
+                            return false;
+                
+                }
 
                 function checkMPAFull(playercount, maxplayercount)
                 {
+                    
                     if(playercount === maxplayercount)
                     {
                         message.channel.send("MPA is full!");   
@@ -75,10 +96,11 @@ module.exports =
                                 console.log(docs);                      
                             }
                         });    
-                        details1(message, args);
+                        
                     }
-    
+                    details1(message, args);
                 }
+                
                 function details1(message,args)
                 {
                     details.execute(message,args);
