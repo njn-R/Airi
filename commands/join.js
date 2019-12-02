@@ -1,5 +1,6 @@
 const mongoose = require('mongoose').set('debug', true);
 const Collection = require("../models/model.js");
+var details = require("./details.js")
 
 module.exports =
     {
@@ -72,7 +73,12 @@ module.exports =
                             }
                         });    
                     }
-    
+                    details1(message,args);
+                }
+                
+                function details1(message,args)
+                {
+                    details.execute(message,args);
                 }
               
         }                    

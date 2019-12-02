@@ -4,8 +4,8 @@ var details = require("./details.js")
 
 module.exports =
     {
-	    name: 'remove',
-	    description: 'Remove from MPA',
+	    name: 'leave',
+	    description: 'Leave MPA',
         execute(message, args)
         {         
             //Connect to database
@@ -17,10 +17,9 @@ module.exports =
                
             }); 
             
-                let temp = message.guild.member(message.mentions.users.first());
-                let usertoremove = temp.displayName;
-            
-                if(usertoremove === null||usertoremove === undefined)
+                var usertoremove = message.member.displayName;
+        
+                if(usertoremove === null||usertoremove=== undefined)
                 {
                     return message.channel.send("User not found");
                 }
@@ -36,7 +35,7 @@ module.exports =
                         {
                             return message.channel.send("MPA not found!"); 
                         }              
-                        message.channel.send("Removed "+ usertoremove + " from MPA!");        
+                        message.channel.send("Left MPA!");        
                     }
                 });
                 details1(message,args);
@@ -44,11 +43,12 @@ module.exports =
                 {
                     details.execute(message,args);
                 }
+
         }                    
 };
 
 
 module.exports.help =
 {
-    name: "remove"
+    name: "leave"
 }

@@ -18,36 +18,32 @@ module.exports =
                
         }); 
   
-                if(args == 'persona')
+                if(args.includes('persona'))
                 {
                         var EQimage = 'https://i.imgur.com/eKOaQE0.jpg';
                 }
-                else if(args == 'eva')
+                else if(args.includes('eva'))
                 {
                         var EQimage = 'https://i.imgur.com/vQNMF02.png';
                 }
-                else if(args == 'pd')
+                else if(args.includes('pd'))
                 {
                         var EQimage = 'https://i.imgur.com/DUH9rKa.png';
                 }
-                else if(args == 'dragon')
+                else if(args.includes('dragon'))
                 {
                         var EQimage = 'https://i.imgur.com/lMqNAdA.png';
                 }
-                else if(args == 'armada')
+                else if(args.includes('armada'))
                 {
                         var EQimage = 'https://i.imgur.com/5UQAw5e.png';
-                }
-                // else if(args == 'armada2')
-                // {
-                //         var EQimage = 'https://i.imgur.com/LW71qBM.jpg';
-                // }
+                }        
                 else
                 {
                         var EQimage = 'https://i.imgur.com/aTMCx3T.jpg';
                 }
 
-                //Collection.findOne({'mpaname':'persona'}, (err, docs) =>
+
                 Collection.findOne({'mpaname':args}, (err, docs) =>
                 {
                     if(err) 
@@ -66,7 +62,7 @@ module.exports =
                     {
                         const mpaEmbed = new Discord.RichEmbed()
                         
-                        //.setTitle(Collection.mpaname)
+                        //.setTitle('Players in MPA '+"("+Collection.playercount+"/"+Collection.maxplayercount+")")
                         //.setURL('https://pso2.arks-visiphone.com/wiki/Specter_of_Destruction')
                         .setAuthor(EQname, 'https://imgur.com/GG6B0HQ.png', 'https://pso2.arks-visiphone.com/wiki/Specter_of_Destruction')
                         //.setDescription('Some description here')

@@ -2,6 +2,7 @@
 const mongoose = require('mongoose').set('debug', true);
 const Collection = require("../models/model.js");
 //var customfunctions = require("./functions.js")
+var details = require("./details.js")
 
 module.exports =
     {
@@ -40,9 +41,8 @@ module.exports =
                 {
                     if(err)
                         return console.log(err);
-                    console.log(Collection.maxplayercount);
-                    checkMPAFull(Collection.playercount, Collection.maxplayercount)
-                   
+                    console.log(Collection);
+                    checkMPAFull(Collection.playercount, Collection.maxplayercount);        
                 });
 
 
@@ -75,13 +75,17 @@ module.exports =
                                 console.log(docs);                      
                             }
                         });    
+                        details1(message, args);
                     }
     
                 }
-              
-        }                    
+                function details1(message,args)
+                {
+                    details.execute(message,args);
+                }
+        }   
+                         
 };
-
 
 module.exports.help =
 {
