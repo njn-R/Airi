@@ -1,7 +1,7 @@
-const Discord = require("discord.js");
+//const Discord = require("discord.js");
 const mongoose = require('mongoose').set('debug', true);
 const Collection = require("../models/model.js");
-var customfunctions = require("./functions.js")
+//var customfunctions = require("./functions.js")
 
 module.exports =
     {
@@ -13,120 +13,72 @@ module.exports =
             //mongoose.connect('mongodb://nj:nj123456@ds029979.mlab.com:29979/heroku_0q4vv4cg',{
             mongoose.connect('mongodb://localhost/db',{
                 useNewUrlParser: true,
-                useFindAndModify: false,
-                useUnifiedTopology: true,
-               
+                useUnifiedTopology: true               
             }); 
-        
-                    // //Check if MPA is full
-                    // customfunctions.checkplayercount(function(callback,args)
-                    // {
-                    //     if(callback === true)
-                    //     {
-                    //         return message.channel.send("Sorry, the MPA is full!"); 
-                    //     }
-                    //     else
-                    //     {
-                    //         return message.channel.send("MPA is not full!"); 
-                    //     }
-                    // }
-
-                // try
-                // {
-                //     var temp = message.mentions.members.first();
-                //     var usertoadd = temp.user.username;
-                // }
-                // catch
-                // {
-                //     var usertoadd = message.username;
-                // }
-               
-                //var temp =  message.mentions.members.first();
+          
+ 
                 let temp = message.guild.member(message.mentions.users.first());
                 let usertoadd = temp.displayName;
-                //var usertoadd = temp.user.username;
-
-                if(usertoadd === null||usertoadd=== undefined)
+               
+                if(usertoadd === null||usertoadd === undefined)
                 {
                     return message.channel.send("User not found");
                 }
-                // Collection.findOne({'mpaname':args[0]}, (err,docs) =>
-                // {
-                //     if(err)
-                //         console.log(err);
-                //     else
-                //     {
-                //         console.log(docs); 
-                //         if(docs === null)
-                //         {
-                //             return message.channel.send("No MPA with that name found!");
-                //         }  
-                //         if(Collection.playercount === Collection.maxplayercount) 
-                //         {
-                //             return message.channel.send("MPA is full!");
-                //         }       
-                //     }
-
-                // });
 
 
 
-                        // function retrievePlayercount(args, callback) {
-                        //     Collection.find({'mpaname': args[0]}, function(err, docs) {
-                        //       if (err) {
-                        //         callback(err);
-                        //       } else {
-                        //         callback(docs);     
-                        //       }
-                        //     });
-                        //   };
-                        //   retrievePlayercount(args, function(err, docs) {
-                        //     if (err) {
-                        //       console.log(err);
-                        //     }
+
+                function getPlayercount(args)
+                {
+                    var query = Collection.findOne({'mpaname':args[0]});
+                    return query;
+                }
+
+                var query =  getPlayercount(args);
+                query.select('playercount maxplayercount');
+                query.exec(function(err,Collection)
+                {
+                    if(err)
+                        return console.log(err);
+                    console.log(Collection.maxplayercount);
+                    checkMPAFull(Collection.playercount, Collection.maxplayercount)
+                   
+                });
+
+
+
+                function checkMPAFull(playercount, maxplayercount)
+                {
+                    if(playercount === maxplayercount)
+                    {
+                        message.channel.send("MPA is full!");   
+                    }
+                    else{
+
                         
-                        
-                        //   });
-
-
-                      
-                                        // let max = 12;
-                                    
-                                        // Collection.findOneAndUpdate({'mpaname': args[0], 'playercount': {$lt: max}},{$push: {players: usertoadd},$inc: {playercount:1}}, (err,docs) =>
-                                        // //Collection.findOneAndUpdate({'mpaname': args[0]},{$push: {players: usertoadd},$inc: {playercount:1}}, (err,docs) =>
-                                        // {
-                                        //     if(err) 
-                                        //         console.log(err);
-                                        //     else 
-                                        //     {    
-                                        //         if(docs === null)
-                                        //         {
-                                        //             return message.channel.send("MPA is full!");    
-                                        //         }          
-                                        //         message.channel.send("Added " + usertoadd + " to MPA!");    
-                                        //     }
-                                        // });
-
-                // Collection.updateOne( { 'mpaname': args[0] },{$push: {players: usertoadd}}, (err,docs) =>
-                // {
-                //     if(err) 
-                //         console.log(err);
-                //     else 
-                //     {
-                //         console.log(docs);                    
-                //         message.channel.send("Added " + usertoadd + " to MPA!");    
-                //     }
-                // });
-                // Collection.updateOne( { 'mpaname': args[0] }, {$inc: {playercount:1}  }, (err,docs) =>
-                // {
-                //     if(err) 
-                //         console.log(err);
-                //     else 
-                //     {
-                //         console.log(docs);                      
-                //     }
-                // });    
-
+                        Collection.updateOne( { 'mpaname': args[0] },{$push: {players: usertoadd}}, (err,docs) =>
+                        {
+                            if(err) 
+                                console.log(err);
+                            else 
+                            {
+                                console.log(docs);                    
+                                message.channel.send("Added " + usertoadd + " to MPA!");    
+                            }
+                        });
+                        Collection.updateOne( { 'mpaname': args[0] }, {$inc: {playercount:1}  }, (err,docs) =>
+                        {
+                            if(err) 
+                                console.log(err);
+                            else 
+                            {
+                                console.log(docs);                      
+                            }
+                        });    
+                    }
+    
+                }
+              
         }                    
 };
 

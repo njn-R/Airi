@@ -17,63 +17,63 @@ for (const file of commandFiles) {
 bot.once('ready', () =>
 {
 	console.log(bot.user.username + " is online!");
-	bot.user.setActivity("Phantasy Star Online 2", {type: "PLAYING"});
+	//bot.user.setActivity("Phantasy Star Online 2", {type: "PLAYING"});
 
 });
 
 bot.on('message', async message => {
 
-	//AI Chat
-	//if (message.content.indexOf('?') === 0) {
-	if (message.channel.id == "649639369061171200" && !message.author.bot) {
-		// Get a substring to exclude the ! from the message
-        var text = message.content;
+	// //AI Chat
+	// //if (message.content.indexOf('?') === 0) {
+	// if (message.channel.id == "649639369061171200" && !message.author.bot) {
+	// 	// Get a substring to exclude the ! from the message
+    //     var text = message.content;
         
-        // Parse the text to the API.ai
-        var request = apiaiApp.textRequest(text, {
-            sessionId: 'uwu'
-        });
+    //     // Parse the text to the API.ai
+    //     var request = apiaiApp.textRequest(text, {
+    //         sessionId: 'uwu'
+    //     });
 
-        // Listen to a response from API.ai
-        request.on('response', (response) => {
-            // Reply the user with the given response
-            message.channel.send(response.result.fulfillment.speech);
-        });
+    //     // Listen to a response from API.ai
+    //     request.on('response', (response) => {
+    //         // Reply the user with the given response
+    //         message.channel.send(response.result.fulfillment.speech);
+    //     });
     
-        // Listen for any errors in the response
-        request.on('error', (error) => {
-            // Tell the user that an error happened
-            message.channel.send("The hamsters in my server ran away D:")
-        });
+    //     // Listen for any errors in the response
+    //     request.on('error', (error) => {
+    //         // Tell the user that an error happened
+    //         message.channel.send("The hamsters in my server ran away D:")
+    //     });
 
-        // End the request to avoid wasting memory
-		request.end();
-	}
+    //     // End the request to avoid wasting memory
+	// 	request.end();
+	// }
 
-	if (message.channel.id == "591605442661318667" && !message.author.bot) {
-		// Get a substring to exclude the ! from the message
-        var text = message.content;
+	// if (message.channel.id == "591605442661318667" && !message.author.bot) {
+	// 	// Get a substring to exclude the ! from the message
+    //     var text = message.content;
         
-        // Parse the text to the API.ai
-        var request = apiaiApp.textRequest(text, {
-            sessionId: 'uwu'
-        });
+    //     // Parse the text to the API.ai
+    //     var request = apiaiApp.textRequest(text, {
+    //         sessionId: 'uwu'
+    //     });
 
-        // Listen to a response from API.ai
-        request.on('response', (response) => {
-            // Reply the user with the given response
-            message.channel.send(response.result.fulfillment.speech);
-        });
+    //     // Listen to a response from API.ai
+    //     request.on('response', (response) => {
+    //         // Reply the user with the given response
+    //         message.channel.send(response.result.fulfillment.speech);
+    //     });
     
-        // Listen for any errors in the response
-        request.on('error', (error) => {
-            // Tell the user that an error happened
-            message.channel.send("The hamsters in my server ran away D:")
-        });
+    //     // Listen for any errors in the response
+    //     request.on('error', (error) => {
+    //         // Tell the user that an error happened
+    //         message.channel.send("The hamsters in my server ran away D:")
+    //     });
 
-        // End the request to avoid wasting memory
-		request.end();
-	}
+    //     // End the request to avoid wasting memory
+	// 	request.end();
+	// }
 
 	//if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -87,7 +87,7 @@ bot.on('message', async message => {
 
 	try 
 	{
-		if(command === "create")
+		if(command === "create" || command === "join" || command === "add" || command === "remove")
 		{
 			await bot.commands.get(command).execute(message, args);
 			command = "details";
@@ -97,6 +97,7 @@ bot.on('message', async message => {
 		{
 			bot.commands.get(command).execute(message, args);
 		}
+
 	}
 	catch (error) 
 	{
@@ -107,68 +108,68 @@ bot.on('message', async message => {
 });
 
 
-var messageID;
+// var messageID;
 
-bot.on('raw', event =>
-{
-	//console.log(event);
-	const eventName = event.t;
-	if(eventName === 'MESSAGE_CREATE')
-	{
-		if(event.d.author.id === '580638610571657216')
-		{	
-			messageID = event.d.id;			
-		}
-	}
-	if(eventName === 'MESSAGE_REACTION_ADD')
-	{
-		if(event.d.message_id === messageID)
-		{
-			var reactionChannel = event.d.channel_id;
-			var emojiID = event.d.emoji.id;
-			try
-			{
-				if((reactionChannel === "591605442661318667") && (emojiID === "571963380143751169")) 
-				{				
-					var user = bot.users.get(event.d.user_id);
-					//console.log(user.username)
-					command = "add";
-					bot.commands.get(command).execute(user);		
-				}
-			}
-			catch (error) 
-			{
-				console.error(error);
-				message.reply('There was an error trying to execute that command!');
-			}
-		}
+// bot.on('raw', event =>
+// {
+// 	//console.log(event);
+// 	const eventName = event.t;
+// 	if(eventName === 'MESSAGE_CREATE')
+// 	{
+// 		if(event.d.author.id === '580638610571657216')
+// 		{	
+// 			messageID = event.d.id;			
+// 		}
+// 	}
+// 	if(eventName === 'MESSAGE_REACTION_ADD')
+// 	{
+// 		if(event.d.message_id === messageID)
+// 		{
+// 			var reactionChannel = event.d.channel_id;
+// 			var emojiID = event.d.emoji.id;
+// 			try
+// 			{
+// 				if((reactionChannel === "591605442661318667") && (emojiID === "571963380143751169")) 
+// 				{				
+// 					var user = bot.users.get(event.d.user_id);
+// 					//console.log(user.username)
+// 					command = "add";
+// 					bot.commands.get(command).execute(user);		
+// 				}
+// 			}
+// 			catch (error) 
+// 			{
+// 				console.error(error);
+// 				message.reply('There was an error trying to execute that command!');
+// 			}
+// 		}
 		
-	}
-	if(eventName === 'MESSAGE_REACTION_REMOVE')
-	{
-		if(event.d.message_id === messageID)
-		{
-			var reactionChannel = event.d.channel_id;
-			var emojiID = event.d.emoji.id;
-			try
-			{
-				if((reactionChannel === "589023788432228362") && (emojiID === "571963380143751169")) 
-				{
-					var user = bot.users.get(event.d.user_id);
-					//console.log(user.username)
-					command = "remove";
-					bot.commands.get(command).execute(user);
-				}
-			}
-			catch (error)
-			{
-				console.error(error);
-				message.reply('There was an error trying to execute that command!');
-			}
-		}
+// 	}
+// 	if(eventName === 'MESSAGE_REACTION_REMOVE')
+// 	{
+// 		if(event.d.message_id === messageID)
+// 		{
+// 			var reactionChannel = event.d.channel_id;
+// 			var emojiID = event.d.emoji.id;
+// 			try
+// 			{
+// 				if((reactionChannel === "589023788432228362") && (emojiID === "571963380143751169")) 
+// 				{
+// 					var user = bot.users.get(event.d.user_id);
+// 					//console.log(user.username)
+// 					command = "remove";
+// 					bot.commands.get(command).execute(user);
+// 				}
+// 			}
+// 			catch (error)
+// 			{
+// 				console.error(error);
+// 				message.reply('There was an error trying to execute that command!');
+// 			}
+// 		}
 		
-	}
-});
+// 	}
+// });
 
 //bot.on('messageReactionAdd', (messageReaction, user) => {
 	//console.log(user.username + " reacted");

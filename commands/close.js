@@ -19,24 +19,22 @@ module.exports =
                 let length = args.length;
                 let i;
                 for(i = 0; i<length; i++)
-                {
-
-                
-                Collection.findOneAndDelete({'mpaname': args[i]}, (err,docs) =>
-                {
-                    if(err) 
-                        console.log(err);
-                    else 
-                    {
-                        console.log(docs);  
-                        if(docs === null)
+                {               
+                        Collection.findOneAndDelete({'mpaname': args[i]}, (err,docs) =>
                         {
-                            return message.channel.send("MPA not found!"); 
-                        }              
-                        message.channel.send(args[i] + " MPA Closed!");    
-                    }
-                });
-            }
+                            if(err) 
+                                console.log(err);
+                            else 
+                            {
+                                console.log(docs);  
+                                if(docs === null)
+                                {
+                                    return message.channel.send("MPA not found!"); 
+                                }              
+                                message.channel.send("MPA Closed!");    
+                            }
+                        });
+                }
 
         }                    
 };
