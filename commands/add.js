@@ -16,6 +16,8 @@ module.exports =
                 useNewUrlParser: true,
                 useUnifiedTopology: true               
             }); 
+            mongoose.set('useCreateIndex', true);
+
           
  
                 let temp = message.guild.member(message.mentions.users.first());
@@ -26,12 +28,11 @@ module.exports =
                     return message.channel.send("User not found");
                 }
 
-
-
+        
 
                 function getPlayercount(args)
                 {
-                    var query = Collection.findOne({'mpaname':args[0]});
+                    var query = Collection.findOne({'mpanumber':args[0]});
                     return query;
                 }
 
@@ -43,16 +44,21 @@ module.exports =
                         return console.log(err);
                     
                     
-                    var result = checkPlayer(Collection.players, usertoadd);   
-                      
-                    if(result === true)
-                    {   
-                        return message.channel.send("I already added that player!");
-                    }
-                    else
-                    {
-                        checkMPAFull(Collection.playercount, Collection.maxplayercount);
-                    } 
+                        try 
+                        {   var result = checkPlayer(Collection.players, usertoadd);   
+                          
+                            if(result === true)
+                            {   
+                                return message.channel.send("I already added that player!");
+                            }
+                            else
+                            {
+                                checkMPAFull(Collection.playercount, Collection.maxplayercount);
+                            } 
+                        }
+                        catch{
+                            return message.channel.send("Please write the MPA name too!");
+                        }
                 });
 
                 function checkPlayer(players, usertoadd)
@@ -77,7 +83,7 @@ module.exports =
                     else{
 
                         
-                        Collection.updateOne( { 'mpaname': args[0] },{$push: {players: usertoadd}}, (err,docs) =>
+                        Collection.updateOne( { 'mpanumber': args[0] },{$push: {players: usertoadd}}, (err,docs) =>
                         {
                             if(err) 
                                 console.log(err);
@@ -87,7 +93,7 @@ module.exports =
                                 message.channel.send("Added " + usertoadd + " to MPA!");    
                             }
                         });
-                        Collection.updateOne( { 'mpaname': args[0] }, {$inc: {playercount:1}  }, (err,docs) =>
+                        Collection.updateOne( { 'mpanumber': args[0] }, {$inc: {playercount:1}  }, (err,docs) =>
                         {
                             if(err) 
                                 console.log(err);

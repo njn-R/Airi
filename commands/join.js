@@ -24,10 +24,11 @@ module.exports =
 
 
 
-
+               
+               
                 function getPlayercount(args)
                 {
-                    var query = Collection.findOne({'mpaname':args[0]});
+                    var query = Collection.findOne({'mpanumber':args[0]});
                     return query;
                 }
 
@@ -38,8 +39,15 @@ module.exports =
                     if(err)
                         return console.log(err);
                     
-                    
-                    var result = checkPlayer(Collection.players, usertoadd);   
+                    try
+                    {
+                        var result = checkPlayer(Collection.players, usertoadd);   
+                    }
+                    catch
+                    {
+                        return message.channel.send("Wrong command!");    
+                    }
+                     
                       
                     if(result === true)
                     {   
@@ -54,7 +62,7 @@ module.exports =
 
                 function checkPlayer(players, usertoadd)
                 {
-                        console.log(players);
+                       
                         if(players.includes(usertoadd))
                         {
                             return true;
@@ -74,23 +82,23 @@ module.exports =
                     else{
 
                         
-                        Collection.updateOne( { 'mpaname': args[0] },{$push: {players: usertoadd}}, (err,docs) =>
+                        Collection.updateOne( { 'mpanumber': args[0] },{$push: {players: usertoadd}}, (err,docs) =>
                         {
                             if(err) 
                                 console.log(err);
                             else 
                             {
-                                console.log(docs);                    
+                                //console.log(docs);                    
                                 message.channel.send("Added " + usertoadd + " to MPA!");    
                             }
                         });
-                        Collection.updateOne( { 'mpaname': args[0] }, {$inc: {playercount:1}  }, (err,docs) =>
+                        Collection.updateOne( { 'mpanumber': args[0] }, {$inc: {playercount:1}  }, (err,docs) =>
                         {
                             if(err) 
                                 console.log(err);
                             else 
                             {
-                                console.log(docs);                      
+                                //console.log(docs);                      
                             }
                         });    
                     }
@@ -101,8 +109,7 @@ module.exports =
                 {
                     details.execute(message,args);
                 }
-              
-        }                    
+        }           
 };
 
 

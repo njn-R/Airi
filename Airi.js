@@ -17,7 +17,7 @@ for (const file of commandFiles) {
 bot.once('ready', () =>
 {
 	console.log(bot.user.username + " is online!");
-	//bot.user.setActivity("Phantasy Star Online 2", {type: "PLAYING"});
+	bot.user.setActivity("Phantasy Star Online 2", {type: "PLAYING"});
 
 });
 
@@ -27,7 +27,7 @@ bot.on('message', async message => {
 	//if (message.content.indexOf('?') === 0) {
 	try{
 
-		if (message.channel.id == "649639369061171200" && !message.author.bot) {
+		if ((message.channel.id == "591605442661318667" || message.channel.id =="649639369061171200" || message.channel.id == "580654853454561290") && !message.author.bot) {
 			// Get a substring to exclude the ! from the message
 			var text = message.content;
 			
@@ -59,7 +59,8 @@ bot.on('message', async message => {
 	}
 
 	//if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
-	if (!message.content.startsWith(prefix) || message.author.bot) return;
+	if (!message.content.startsWith(prefix) || message.author.bot || message.channel.id !== "591605442661318667" 
+	|| message.channel.id !=="649639369061171200" || message.channel.id !== "580654853454561290") return;
 	
 	//const args = message.content.slice(process.env.prefix.length).split(/ +/);
 	const args = message.content.slice(prefix.length).split(/ +/);
@@ -87,7 +88,7 @@ bot.on('message', async message => {
 		console.error(error);
 		message.reply('There was an error trying to execute that command!');
 	}
-
+	
 		
 });
 

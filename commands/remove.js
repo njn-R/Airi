@@ -25,7 +25,7 @@ module.exports =
                     return message.channel.send("User not found");
                 }
 
-                Collection.findOneAndUpdate({'mpaname': args[0]}, { $pull: {'players': usertoremove }, $inc: {playercount:-1} },(err,docs) =>
+                Collection.findOneAndUpdate({'mpanumber': args[0]}, { $pull: {'players': usertoremove }, $inc: {playercount:-1} },(err,docs) =>
                 {
                     if(err) 
                         console.log(err);

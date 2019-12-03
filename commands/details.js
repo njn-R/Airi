@@ -17,83 +17,68 @@ module.exports =
                 useUnifiedTopology: true
                
         }); 
-  
-                if(args.includes('persona') || args.includes('mask'))
-                {
-                        var EQimage = 'https://i.imgur.com/eKOaQE0.jpg';
-                }
-                else if(args.includes('eva'))
-                {
-                        var EQimage = 'https://i.imgur.com/vQNMF02.png';
-                }
-                else if(args.includes('pd') || args.includes('profound'))
-                {
-                        var EQimage = 'https://i.imgur.com/DUH9rKa.png';
-                }
-                else if(args.includes('dragon') || args.includes('lizard'))
-                {
-                        var EQimage = 'https://i.imgur.com/lMqNAdA.png';
-                }
-                else if(args.includes('armada'))
-                {
-                        var EQimage = 'https://i.imgur.com/5UQAw5e.png';
-                }        
-                else
-                {
-                        var EQimage = 'https://i.imgur.com/aTMCx3T.jpg';
-                }
+        mongoose.set('useCreateIndex', true);
 
-
-                Collection.findOne({'mpaname':args}, (err, docs) =>
-                {
-                    if(err) 
-                        console.log(err);
-                    else 
-                    {
-                        console.log(docs);
+        let M_number = args[0];
+        Collection.findOne({'mpanumber':M_number}, (err, docs) =>
+        {
+            if(err) 
+                console.log(err);
+            else 
+            {
+                console.log(docs);
+        
+            }
+        }).exec(function (err, Collection) 
+        {
+            if (err) return message.channel.send("Please type the MPA number!");
+            try
+            {
+            
+                let EQname = Collection.mpaname.charAt(0).toUpperCase() + Collection.mpaname.slice(1);
                 
-                    }
-                }).exec(function (err, Collection) 
+                try
                 {
-                    if (err) return handleError(err);
-                    let EQname = Collection.mpaname.charAt(0).toUpperCase() + Collection.mpaname.slice(1);
+                    const mpaEmbed = new Discord.RichEmbed()
                     
-                    try
-                    {
-                        const mpaEmbed = new Discord.RichEmbed()
-                        
-                        //.setTitle('Players in MPA '+"("+Collection.playercount+"/"+Collection.maxplayercount+")")
-                        //.setURL('https://pso2.arks-visiphone.com/wiki/Specter_of_Destruction')
-                        .setAuthor(EQname, 'https://imgur.com/GG6B0HQ.png', 'https://pso2.arks-visiphone.com/wiki/Specter_of_Destruction')
-                        //.setDescription('Some description here')
-                        //.setThumbnail('https://i.imgur.com/eKOaQE0.jpg')
-                        //.addField('Players in MPA', Collection.playercount+"/"+Collection.maxplayercount)
-                        //.addBlankField()
-                        .setColor('#0099ff')
-                        .addField('```Players in MPA '+"("+Collection.playercount+"/"+Collection.maxplayercount+")```", Collection.players, true)      
-                        .setImage(EQimage)
-                        //.addBlankField()
-                        .setTimestamp()
-                        //.setFooter('Type >join MPA_Name to join mpa!');
-  
+                    .setTitle(EQname)
+                    //.setURL('https://pso2.arks-visiphone.com/wiki/Specter_of_Destruction')
+                    .setAuthor("MPA Number: "+Collection.mpanumber, 'https://i.imgur.com/HF4CEeN.png')
+                    //.setDescription('Some description here')
+                    //.setThumbnail('https://i.imgur.com/eKOaQE0.jpg')
+                    //.addField('Players in MPA', Collection.playercount+"/"+Collection.maxplayercount)
+                    //.addBlankField()
+                    .setColor('#0099ff')
+                    .addField('```Players in MPA '+"("+Collection.playercount+"/"+Collection.maxplayercount+")```", Collection.players, true)      
+                    .setImage(Collection.eqimage)
+                    //.addBlankField()
+                    .setTimestamp()
+                    .setFooter("Type >join "+ Collection.mpanumber + " to join mpa!");
 
-                        message.channel.send(mpaEmbed);
-                    }
-                    catch
-                    {
-                        const noplayerEmbed = new Discord.RichEmbed()
-                        .setAuthor(EQname, 'https://imgur.com/GG6B0HQ.png', 'https://pso2.arks-visiphone.com/wiki/Specter_of_Destruction')
-                        .setColor('#0099ff')
-                        .addField('Players in MPA '+"("+Collection.playercount+"/"+Collection.maxplayercount+")", "No players in mpa!" , true)
-                        .setImage(EQimage)
-                        .setTimestamp()
-                        .setFooter('Type >join to join mpa!');
 
-                        message.channel.send(noplayerEmbed);
-                        
-                    }
-                    });     
-        } 
+                    message.channel.send(mpaEmbed);
+                }
+                catch
+                {
+                    const noplayerEmbed = new Discord.RichEmbed()
+                    .setAuthor(EQname, 'https://imgur.com/GG6B0HQ.png', 'https://pso2.arks-visiphone.com/wiki/Specter_of_Destruction')
+                    .setColor('#0099ff')
+                    .addField('Players in MPA '+"("+Collection.playercount+"/"+Collection.maxplayercount+")", "No players in mpa!" , true)
+                    .setImage(EQimage)
+                    .setTimestamp()
+                    .setFooter('Type >join to join mpa!');
+
+                    message.channel.send(noplayerEmbed);
+                    
+                }
+            }
+            catch
+            {
+                
+            }
+                   
+         });     
+    } 
     
                      
 };

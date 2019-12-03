@@ -3,8 +3,8 @@ const Collection = require("../models/model.js");
 
 module.exports =
     {
-	    name: 'close',
-	    description: 'Close MPA',
+	    name: 'size',
+	    description: 'Change MPA size',
         execute(message, args)
         {         
             //Connect to database
@@ -19,11 +19,8 @@ module.exports =
 
             if(message.member.roles.has('444176946780438548'))
             {
-                let length = args.length;
-                let i;
-                for(i = 0; i<length; i++)
-                {               
-                        Collection.findOneAndDelete({'mpanumber': args[i]}, (err,docs) =>
+                    
+                        Collection.findOneAndUpdate({'mpanumber': args[0]}, {'maxplayercount': args[1]},(err,docs) =>
                         {
                             if(err) 
                                 console.log(err);
@@ -34,15 +31,14 @@ module.exports =
                                 {
                                     return message.channel.send("MPA not found!"); 
                                 }              
-                                message.channel.send("MPA Closed!");    
+                                message.channel.send("Changed MPA size!");    
                             }
                         });
-                }
+                
             }
             else
             {
                 message.channel.send("You do not have permission for that command!"); 
-
             }
 
         }                    
@@ -51,5 +47,5 @@ module.exports =
 
 module.exports.help =
 {
-    name: "close"
+    name: "size"
 }
