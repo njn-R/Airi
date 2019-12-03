@@ -4,7 +4,7 @@ var details = require("./details.js")
 
 module.exports =
     {
-	    name: 'leader',
+	    name: 'removeleader',
 	    description: 'Assign MPA leader',
         execute(message, args)
         {         
@@ -20,12 +20,27 @@ module.exports =
 
 
                 let temp = message.guild.member(message.mentions.users.first());
-                let usertoadd = temp.displayName;
+                let temp2 = temp.displayName;
+                let usertoremove = temp2 + "   [Party Leader]";
                
-                if(usertoadd === null||usertoadd === undefined)
+                if(usertoremove === null||usertoremove === undefined)
                 {
                     return message.channel.send("User not found");
                 }
+
+                // Collection.findOneAndUpdate(
+                //     {
+                //         'mpanumber': args[0],
+                //         'players.$': usertoadd,
+                //     },
+                //     {
+                //         '$set': { 'players.$': "AAAA" }
+                //     },
+                //     function(error, success) {
+                //        console.log(error, success);
+                //     }
+                // );
+               
 
                 var query =  Collection.findOne({'mpanumber':args[0]});
                 query.select('players');
@@ -39,18 +54,15 @@ module.exports =
                             let i;
                             let arrayLength = Collection.players.length;
                             for(i=0;i<arrayLength;i++)
-                            {                              
-                                if(Collection.players[i]===usertoadd)
-                                {
-                                    
-                                    let temp = usertoadd + "   [Party Leader]";
-                                    Collection.players.set(i, temp);
+                            {                        
+                                if(Collection.players[i]===usertoremove)
+                                {                                  
+                                    Collection.players.set(i, temp2);
                                     Collection.save();
-                                    message.channel.send(usertoadd +" set as leader!");
-
+                                    message.channel.send("Removed leader!");
                                 }
                             }
-                            //details1(message,args);   
+                            //details1(message,args);
                           
                         }
                         catch{
@@ -58,11 +70,12 @@ module.exports =
                         }
                 });
 
-                  
-                // function details1(message,args)
-                // {
-                //     details.execute(message,args);
-                // }
+            
+
+            // function details1(message,args)
+            // {
+            //     details.execute(message,args);
+            // }
  
         }                    
 };
@@ -70,5 +83,5 @@ module.exports =
 
 module.exports.help =
 {
-    name: "leader"
+    name: "removeleader"
 }

@@ -1,7 +1,7 @@
 var apiaiApp = require('apiai')("f5f50d38b1974c54be0a71328d8920e4");
 const fs = require('fs');
 const Discord = require('discord.js');
-const {prefix, token}= require('./config.json');
+//const {prefix, token}= require('./config.json');
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
@@ -58,35 +58,36 @@ bot.on('message', async message => {
 		message.reply('There was an error trying to execute that command!');
 	}
 
-	//if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
-	if (!message.content.startsWith(prefix) || message.author.bot || message.channel.id !== "591605442661318667" 
-	|| message.channel.id !=="649639369061171200" || message.channel.id !== "580654853454561290") return;
-	
-	//const args = message.content.slice(process.env.prefix.length).split(/ +/);
-	const args = message.content.slice(prefix.length).split(/ +/);
-	
-	var command = args.shift().toLowerCase();
-
-	if (!bot.commands.has(command)) return;
-
-	try 
+	if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
+	//if (!message.content.startsWith(prefix) || message.author.bot) return;
+	else if(message.channel.id == "591605442661318667" || message.channel.id =="649639369061171200" || message.channel.id == "580654853454561290")
 	{
-		if(command === "create")
-		{
-			await bot.commands.get(command).execute(message, args);
-			command = "details";
-			bot.commands.get(command).execute(message, args);
-		}
-		else
-		{
-			bot.commands.get(command).execute(message, args);
-		}
+			const args = message.content.slice(process.env.prefix.length).split(/ +/);
+			//const args = message.content.slice(prefix.length).split(/ +/);
+			
+			var command = args.shift().toLowerCase();
 
-	}
-	catch (error) 
-	{
-		console.error(error);
-		message.reply('There was an error trying to execute that command!');
+			if (!bot.commands.has(command)) return;
+
+			try 
+			{
+				if(command === "create")
+				{
+					await bot.commands.get(command).execute(message, args);
+					command = "details";
+					bot.commands.get(command).execute(message, args);
+				}
+				else
+				{
+					bot.commands.get(command).execute(message, args);
+				}
+
+			}
+			catch (error) 
+			{
+				console.error(error);
+				message.reply('There was an error trying to execute that command!');
+			}
 	}
 	
 		
@@ -162,5 +163,5 @@ bot.on('message', async message => {
 	
 
 
-//bot.login(process.env.token);
-bot.login(token);
+bot.login(process.env.token);
+//bot.login(token);

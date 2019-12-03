@@ -9,8 +9,8 @@ module.exports =
         execute(message, args)
         {         
             //Connect to database
-            //mongoose.connect('mongodb://nj:nj123456@ds029979.mlab.com:29979/heroku_0q4vv4cg',{
-            mongoose.connect('mongodb://localhost/db',{
+            mongoose.connect(process.env.mongodb,{
+            //mongoose.connect('mongodb://localhost/db',{
                 useNewUrlParser: true,
                 useFindAndModify: false,
                 useUnifiedTopology: true,
