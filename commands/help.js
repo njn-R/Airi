@@ -17,12 +17,12 @@ module.exports =
                 fields: [
                     {
                         name: "**>create # MPAname**",
-                        value: "Creates an MPA with given MPA name and MPA number",
+                        value: "Create MPA",
                         inline: false
                       },
                       {
                         name: "**>details # **",
-                        value: "Display details of the MPA",
+                        value: "Display details of MPA",
                         inline: false
                       },
                       {
@@ -37,32 +37,32 @@ module.exports =
                       },
                       {
                         name: "**>add # @username**",
-                        value: "Add another player to the MPA",
+                        value: "Add a player to MPA",
                         inline: false
                       },
                       {
                         name: "**>remove # @username**",
-                        value: "Remove a player from the MPA",
+                        value: "Remove a player from MPA",
                         inline: false
                       },
                       {
                         name: "**>leader # @username**",
-                        value: "Assign a party leader for the MPA",
+                        value: "Assign a party leader",
                         inline: false
                       },
                       {
                         name: "**>removeleader # @username**",
-                        value: "Remove the party leader from the MPA",
+                        value: "Remove the party leader",
                         inline: false
                       },
                       {
                         name: "**>size # MPAsize**",
-                        value: "Change the player size of the MPA",
+                        value: "Change the player size of MPA",
                         inline: false
                       },
                       {
                         name: "**>list**",
-                        value: "List all the current MPAs",
+                        value: "List all current MPAs",
                         inline: false
                       },
                 ],
