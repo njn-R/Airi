@@ -16,58 +16,58 @@ module.exports =
                 description: '```> = Bot prefix        # = MPA number```',
                 fields: [
                     {
-                        name: "Creates an MPA with given MPA name and MPA number",
-                        value: "**>create # MPAname**",
+                        name: "**>create # MPAname**",
+                        value: "Creates an MPA with given MPA name and MPA number",
                         inline: false
                       },
                       {
-                        name: "Display details of the MPA",
-                        value: "**>details # **",
+                        name: "**>details # **",
+                        value: "Display details of the MPA",
                         inline: false
                       },
                       {
-                        name: "Join the MPA",
-                        value: "**>join #**",
+                        name: "**>join #**",
+                        value: "Join the MPA",
                         inline: false
                       },
                       {
-                        name: "Leave the MPA",
-                        value: "**>leave #**",
+                        name: "**>leave #**",
+                        value: "Leave the MPA",
                         inline: false
                       },
                       {
-                        value: "**>add # @username**",  
-                        name: "Add another player to the MPA",                     
+                        name: "**>add # @username**",
+                        value: "Add another player to the MPA",
                         inline: false
                       },
                       {
-                        name: "Remove a player from the MPA",
-                        value: "**>remove # @username**",
+                        name: "**>remove # @username**",
+                        value: "Remove a player from the MPA",
                         inline: false
                       },
                       {
-                        name: "Assign a party leader for the MPA",
-                        value: "**>leader # @username**",
+                        name: "**>leader # @username**",
+                        value: "Assign a party leader for the MPA",
                         inline: false
                       },
                       {
-                        name: "Remove the party leader from the MPA",
-                        value: "**>removeleader # @username**",
+                        name: "**>removeleader # @username**",
+                        value: "Remove the party leader from the MPA",
                         inline: false
                       },
                       {
-                        name: "Change the player size of the MPA",
-                        value: "**>size # MPAsize**",
+                        name: "**>size # MPAsize**",
+                        value: "Change the player size of the MPA",
                         inline: false
                       },
                       {
-                        name: "List all the current MPAs",
-                        value: "**>list**",
+                        name: "**>list**",
+                        value: "List all the current MPAs",
                         inline: false
                       },
                 ],
                 footer: {
-                    text: '"Airi MPA Bot',
+                    text: 'Airi MPA Bot',
                     icon_url: 'https://i.imgur.com/HF4CEeN.png',
                 },
             };
