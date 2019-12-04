@@ -16,53 +16,53 @@ module.exports =
                 description: '```> = Bot prefix        # = MPA number```',
                 fields: [
                     {
-                        name: ">create # MPAname",
-                        value: "**Creates an MPA with given MPA name and MPA number**",
+                        name: "Creates an MPA with given MPA name and MPA number",
+                        value: "**>create # MPAname**",
                         inline: false
                       },
                       {
-                        name: ">details #",
-                        value: "**Display details of the MPA**",
+                        name: "Display details of the MPA",
+                        value: "**>details # **",
                         inline: false
                       },
                       {
-                        name: ">join #",
-                        value: "**Join the MPA**",
+                        name: "Join the MPA",
+                        value: "**>join #**",
                         inline: false
                       },
                       {
-                        name: ">leave #",
-                        value: "**Leave the MPA**",
+                        name: "Leave the MPA",
+                        value: "**>leave #**",
                         inline: false
                       },
                       {
-                        name: ">add # @username",
-                        value: "**Add another player to the MPA**",
+                        value: "**>add # @username**",  
+                        name: "Add another player to the MPA",                     
                         inline: false
                       },
                       {
-                        name: ">remove # @username",
-                        value: "**Remove a player from the MPA**",
+                        name: "Remove a player from the MPA",
+                        value: "**>remove # @username**",
                         inline: false
                       },
                       {
-                        name: ">leader # @username",
-                        value: "**Assign a party leader for the MPA**",
+                        name: "Assign a party leader for the MPA",
+                        value: "**>leader # @username**",
                         inline: false
                       },
                       {
-                        name: ">removeleader # @username",
-                        value: "**Remove the party leader from the MPA**",
+                        name: "Remove the party leader from the MPA",
+                        value: "**>removeleader # @username**",
                         inline: false
                       },
                       {
-                        name: ">size # MPAsize",
-                        value: "**Change the player size of the MPA**",
+                        name: "Change the player size of the MPA",
+                        value: "**>size # MPAsize**",
                         inline: false
                       },
                       {
-                        name: ">list",
-                        value: "**List all the current MPAs**",
+                        name: "List all the current MPAs",
+                        value: "**>list**",
                         inline: false
                       },
                 ],
