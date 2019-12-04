@@ -18,42 +18,42 @@ module.exports =
                     {
                         name: "**>create # MPAname**",
                         value: "Creates an MPA with given MPA name and MPA number",
-                        inline: true
+                        inline: false
                       },
                       {
                         name: "**>details # **",
                         value: "Display details of the MPA  ",
-                        inline: true
+                        inline: false
                       },
                       {
                         name: "**>join #**",
                         value: "Join the MPA",
-                        inline: true
+                        inline: false
                       },
                       {
                         name: "**>leave #**",
                         value: "Leave the MPA",
-                        inline: true
+                        inline: false
                       },
                       {
                         name: "**>add # @username**",
                         value: "Add another player to the MPA",
-                        inline: true
+                        inline: false
                       },
                       {
                         name: "**>remove # @username**",
                         value: "Remove a player from the MPA",
-                        inline: true
+                        inline: false
                       },
                       {
                         name: "**>leader # @username**",
                         value: "Assign a party leader for the MPA",
-                        inline: true
+                        inline: false
                       },
                       {
                         name: "**>removeleader # @username**",
                         value: "Remove the party leader from the MPA",
-                        inline: true
+                        inline: false
                       },
                       {
                         name: "**>size # MPAsize**",
