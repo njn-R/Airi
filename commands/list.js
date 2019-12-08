@@ -17,35 +17,30 @@ module.exports =
             }); 
             mongoose.set('useCreateIndex', true);
             
-            let i;
-            for(i=0; i<5; i++)
-            {
-                var query = Collection.findOne({'mpanumber': i});
-                if(query === null)
+            let flag = 0;
+            for(let i=0; i<5; i++)
+            {                   
+                var query = Collection.findOne({'mpanumber': i});        
+                query.select('mpaname mpanumber');
+                query.exec(function(err,Collection)
                 {
-                    
-                }
-                else
-                {   
-                    query.select('mpaname mpanumber');
-                    query.exec(function(err,Collection)
+                    if(err)
+                        return console.log(err);
+                    try
+                    {                    
+                        message.channel.send("```MPA: "+ Collection.mpaname + "    Number: "+ Collection.mpanumber + "```");                           
+                    }
+                    catch
                     {
-                        if(err)
-                            return console.log(err);
-                        try{                       
-                        message.channel.send("```MPA: "+ Collection.mpaname + "    Number: "+ Collection.mpanumber + "```");
+                        flag = flag + 1;
+                        if(flag === 5)
+                        {
+                            message.channel.send("No MPAs found!");
                         }
-                        catch{
+                    }
+                });                         
+            }  
 
-                        }
-                    });
-                }
-                
-                    
-            
-            }    
-             
-              
 
         }                    
 };

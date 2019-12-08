@@ -20,8 +20,7 @@ module.exports =
             if(message.member.roles.has('444176946780438548'))
             {
                 let length = args.length;
-                let i;
-                for(i = 0; i<length; i++)
+                for(let i = 0; i<length; i++)
                 {               
                         Collection.findOneAndDelete({'mpanumber': args[i]}, (err,docs) =>
                         {
@@ -29,7 +28,7 @@ module.exports =
                                 console.log(err);
                             else 
                             {
-                                console.log(docs);  
+                                //console.log(docs);  
                                 if(docs === null)
                                 {
                                     return message.channel.send("MPA not found!"); 
@@ -41,7 +40,7 @@ module.exports =
             }
             else
             {
-                message.channel.send("You do not have permission for that command!"); 
+                message.channel.send("You do not have permission to use that command!"); 
 
             }
 

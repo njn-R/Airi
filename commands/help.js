@@ -13,7 +13,7 @@ module.exports =
                 author: {
                     name: 'Bot Commands',
                 },
-                description: '```> = Bot prefix        # = MPA number```',
+                description: '```Bot prefix: >       MPA number: # ```',
                 fields: [
                     {
                         name: "**>create # MPAname**",

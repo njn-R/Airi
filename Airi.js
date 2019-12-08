@@ -24,39 +24,39 @@ bot.once('ready', () =>
 bot.on('message', async message => {
 
 	//AI Chat
-	//if (message.content.indexOf('?') === 0) {
-	try{
+	
+	// try{
 
-		if ((message.channel.id == "591605442661318667" || message.channel.id =="649639369061171200" || message.channel.id == "580654853454561290") && !message.author.bot) {
-			// Get a substring to exclude the ! from the message
-			var text = message.content;
+	// 	if ((message.channel.id == "591605442661318667" || message.channel.id =="649639369061171200" || message.channel.id == "580654853454561290") && !message.author.bot) {
+	// 		// Get a substring to exclude the ! from the message
+	// 		var text = message.content;
 			
-			// Parse the text to the API.ai
-			var request = apiaiApp.textRequest(text, {
-				sessionId: 'uwu'
-			});
+	// 		// Parse the text to the API.ai
+	// 		var request = apiaiApp.textRequest(text, {
+	// 			sessionId: 'uwu'
+	// 		});
 
-			// Listen to a response from API.ai
-			request.on('response', (response) => {
-				// Reply the user with the given response
-				message.channel.send(response.result.fulfillment.speech);
-			});
+	// 		// Listen to a response from API.ai
+	// 		request.on('response', (response) => {
+	// 			// Reply the user with the given response
+	// 			message.channel.send(response.result.fulfillment.speech);
+	// 		});
 		
-			// Listen for any errors in the response
-			request.on('error', (error) => {
-				// Tell the user that an error happened
-				message.channel.send("The hamsters in my server ran away D:")
-			});
+	// 		// Listen for any errors in the response
+	// 		request.on('error', (error) => {
+	// 			// Tell the user that an error happened
+	// 			message.channel.send("The hamsters in my server ran away D:")
+	// 		});
 
-			// End the request to avoid wasting memory
-			request.end();
-		}
-	}
-	catch(error) 
-	{
-		console.error(error);
-		message.reply('There was an error trying to execute that command!');
-	}
+	// 		// End the request to avoid wasting memory
+	// 		request.end();
+	// 	}
+	// }
+	// catch(error) 
+	// {
+	// 	console.error(error);
+	// 	message.reply('There was an error trying to execute that command!');
+	// }
 
 	if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
 	//if (!message.content.startsWith(prefix) || message.author.bot) return;
