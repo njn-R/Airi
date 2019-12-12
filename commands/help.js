@@ -1,5 +1,3 @@
-const mongoose = require('mongoose').set('debug', true);
-const Collection = require("../models/model.js");
 
 module.exports =
     {
@@ -37,32 +35,42 @@ module.exports =
                       },
                       {
                         name: "**>add # @username**",
-                        value: "Add a player to MPA",
+                        value: "Add a player",
                         inline: false
                       },
                       {
                         name: "**>remove # @username**",
-                        value: "Remove a player from MPA",
+                        value: "Remove a player",
                         inline: false
                       },
                       {
                         name: "**>leader # @username**",
-                        value: "Assign a party leader",
+                        value: "Assign party leader",
                         inline: false
                       },
                       {
-                        name: "**>removeleader # @username**",
-                        value: "Remove the party leader",
+                        name: "**>removel # @username**",
+                        value: "Remove party leader",
                         inline: false
                       },
                       {
                         name: "**>size # MPAsize**",
-                        value: "Change the player size of MPA",
+                        value: "Change player size of MPA",
                         inline: false
                       },
                       {
                         name: "**>list**",
                         value: "List all current MPAs",
+                        inline: false
+                      },
+                      {
+                        name: "**>guest # playername**",
+                        value: "Add a guest",
+                        inline: false
+                      },
+                      {
+                        name: "**>removeg # playername**",
+                        value: "Remove a guest",
                         inline: false
                       },
                 ],

@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const mongoose = require('mongoose').set('debug', true);
 const Collection = require("../models/model.js");
-var customfunctions = require("./functions.js")
 
 module.exports =
     {
@@ -32,8 +31,7 @@ module.exports =
         }).exec(function (err, Collection) 
         {
             if (err) return message.channel.send("Please type the MPA number!");
-            try
-            {
+          
             
                 let EQname = Collection.mpaname.charAt(0).toUpperCase() + Collection.mpaname.slice(1);
                 
@@ -61,21 +59,18 @@ module.exports =
                 catch
                 {
                     const noplayerEmbed = new Discord.RichEmbed()
-                    .setAuthor(EQname, 'https://imgur.com/GG6B0HQ.png', 'https://pso2.arks-visiphone.com/wiki/Specter_of_Destruction')
+                    .setTitle(EQname)
+                    .setAuthor("MPA Number: "+Collection.mpanumber, 'https://i.imgur.com/HF4CEeN.png')
                     .setColor('#0099ff')
                     .addField('Players in MPA '+"("+Collection.playercount+"/"+Collection.maxplayercount+")", "No players in mpa!" , true)
-                    .setImage(EQimage)
+                    .setImage(Collection.eqimage)
                     .setTimestamp()
-                    .setFooter('Type >join to join mpa!');
+                    .setFooter("Type >join "+ Collection.mpanumber + " to join mpa!");
 
                     message.channel.send(noplayerEmbed);
                     
                 }
-            }
-            catch
-            {
-                
-            }
+          
                    
          });     
     } 

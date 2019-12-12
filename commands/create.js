@@ -1,6 +1,7 @@
-const Discord = require("discord.js");
 const mongoose = require("mongoose");
 const Collection = require("../models/model.js");
+var details = require("./details.js")
+
 
 
 module.exports =
@@ -20,7 +21,7 @@ module.exports =
             if(mpaName.includes('persona') || mpaName.includes('mask'))
             {
                 mpcount = 12;
-                eqimage = 'https://i.imgur.com/eKOaQE0.jpg';
+                eqimage = 'https://i.imgur.com/dVk6uF5.jpg';
             }
             else if(mpaName.includes('eva'))
             {
@@ -41,6 +42,11 @@ module.exports =
             {
                 mpcount = 8; 
                 eqimage = 'https://i.imgur.com/5UQAw5e.png';   
+            }      
+            else if(mpaName.includes('trigger') || mpaName.includes('tg'))
+            {
+                mpcount = 4; 
+                eqimage = 'https://i.imgur.com/iDGpHuG.jpg';   
             }        
             else
             {
@@ -69,16 +75,22 @@ module.exports =
             });
            
             newdocument.save()
-            .then(result => console.log(result))
+            //.then(result => console.log(result))
+            .then( function(result) 
+            {
+                details.execute(message,args);
+            })
             .catch( function(err)
             {   if(err)
-                    return message.channel.send(err);
-                else
-                    return message.channel.send("MPA created!");
-            });
-            
-                        
+                    //return message.channel.send(err);
+                    return message.channel.send("An MPA with that number already exists!");
+                //else
+                    //message.channel.send("MPA created!");
+                                    
+            });       
         }
+
+      
 };
 module.exports.help =
 {

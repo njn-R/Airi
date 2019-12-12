@@ -17,29 +17,22 @@ module.exports =
             }); 
             mongoose.set('useCreateIndex', true);
 
-            if(message.member.roles.has('444176946780438548'))
+        
+            Collection.findOneAndUpdate({'mpanumber': args[0]}, {'maxplayercount': args[1]},(err,docs) =>
             {
-                    
-                        Collection.findOneAndUpdate({'mpanumber': args[0]}, {'maxplayercount': args[1]},(err,docs) =>
-                        {
-                            if(err) 
-                                console.log(err);
-                            else 
-                            {
-                                console.log(docs);  
-                                if(docs === null)
-                                {
-                                    return message.channel.send("MPA not found!"); 
-                                }              
-                                message.channel.send("Changed MPA size!");    
-                            }
-                        });
-                
-            }
-            else
-            {
-                message.channel.send("You do not have permission for that command!"); 
-            }
+                if(err) 
+                    console.log(err);
+                else 
+                {
+                    console.log(docs);  
+                    if(docs === null)
+                    {
+                        return message.channel.send("MPA not found!"); 
+                    }              
+                    message.channel.send("Changed MPA size!");    
+                }
+            });
+                       
 
         }                    
 };

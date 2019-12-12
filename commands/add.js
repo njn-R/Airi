@@ -1,7 +1,5 @@
-//const Discord = require("discord.js");
 const mongoose = require('mongoose').set('debug', true);
 const Collection = require("../models/model.js");
-//var customfunctions = require("./functions.js")
 var details = require("./details.js")
 
 module.exports =
@@ -18,8 +16,7 @@ module.exports =
             }); 
             mongoose.set('useCreateIndex', true);
 
-          
- 
+
                 let temp = message.guild.member(message.mentions.users.first());
                 let usertoadd = temp.displayName;
                

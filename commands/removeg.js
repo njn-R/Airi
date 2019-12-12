@@ -4,8 +4,8 @@ var details = require("./details.js")
 
 module.exports =
     {
-	    name: 'remove',
-	    description: 'Remove from MPA',
+	    name: 'removeg',
+	    description: 'Remove guest from MPA',
         execute(message, args)
         {         
             //Connect to database
@@ -17,12 +17,12 @@ module.exports =
                
             }); 
             
-                let temp = message.guild.member(message.mentions.users.first());
-                let usertoremove = temp.displayName;
+                
+                let usertoremove = args[1];
             
                 if(usertoremove === null||usertoremove === undefined)
                 {
-                    return message.channel.send("User not found");
+                    return message.channel.send("Please enter the name of the guest to remove!");
                 }
 
                 Collection.findOneAndUpdate({'mpanumber': args[0], 'players': usertoremove}, { $pull: {'players': usertoremove }, $inc: {playercount:-1} },(err,docs) =>
@@ -36,18 +36,14 @@ module.exports =
                         {
                             return message.channel.send("Error! MPA or Player Name entered is wrong!"); 
                         }  
-                        else  
-                        {       
-                            details1(message,args);   
-                            message.channel.send("Removed "+ usertoremove + " from MPA!");    
-                        }    
+                        else
+                        {
+                            details1(message,args);     
+                            message.channel.send("Removed "+ usertoremove + " from MPA!");   
+                        }
                     }
                 });
-                
-                            
-          
-
-                
+               
                 function details1(message,args)
                 {
                     details.execute(message,args);
@@ -58,5 +54,5 @@ module.exports =
 
 module.exports.help =
 {
-    name: "remove"
+    name: "removeg"
 }

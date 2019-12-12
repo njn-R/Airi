@@ -21,7 +21,7 @@ module.exports =
 
                 let temp = message.guild.member(message.mentions.users.first());
                 let usertoadd = temp.displayName;
-               
+            
                 if(usertoadd === null||usertoadd === undefined)
                 {
                     return message.channel.send("User not found");
@@ -45,24 +45,22 @@ module.exports =
                                     
                                     let temp = usertoadd + "   [Party Leader]";
                                     Collection.players.set(i, temp);
-                                    Collection.save();
+                                    Collection.save()
+                                    .then(function(result){
+                                        details.execute(message,args);
+                                    });
                                     message.channel.send(usertoadd +" set as leader!");
 
                                 }
                             }
-                            //details1(message,args);   
+                               
                           
                         }
                         catch{
                             
                         }
                 });
-
-                  
-                // function details1(message,args)
-                // {
-                //     details.execute(message,args);
-                // }
+                
  
         }                    
 };

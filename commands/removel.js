@@ -4,8 +4,8 @@ var details = require("./details.js")
 
 module.exports =
     {
-	    name: 'removeleader',
-	    description: 'Assign MPA leader',
+	    name: 'removel',
+	    description: 'Remove MPA leader',
         execute(message, args)
         {         
             //Connect to database
@@ -58,11 +58,14 @@ module.exports =
                                 if(Collection.players[i]===usertoremove)
                                 {                                  
                                     Collection.players.set(i, temp2);
-                                    Collection.save();
+                                    Collection.save()
+                                    .then(function(result)
+                                    {
+                                        details.execute(message,args);
+                                    });
                                     message.channel.send("Removed leader!");
                                 }
                             }
-                            //details1(message,args);
                           
                         }
                         catch{
@@ -70,12 +73,6 @@ module.exports =
                         }
                 });
 
-            
-
-            // function details1(message,args)
-            // {
-            //     details.execute(message,args);
-            // }
  
         }                    
 };
@@ -83,5 +80,5 @@ module.exports =
 
 module.exports.help =
 {
-    name: "removeleader"
+    name: "removel"
 }
