@@ -36,7 +36,7 @@ module.exports =
                 {
                     if(err)
                         return console.log(err);
-                    if(docs === null)
+                    if(query === null)
                     {
                         return message.channel.send("MPA not found!"); 
                     }       
