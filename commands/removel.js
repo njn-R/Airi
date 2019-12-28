@@ -28,7 +28,7 @@ module.exports =
                 //     return message.channel.send("User not found");
                 // }
 
-                if(isNaN(args[0])) return message.channel.send("Please write the MPA number too!");
+                if(isNaN(args[0])) return message.channel.send("Please write the MPA number!");
 
                 let usertoremove = [];
                 let original = [];

@@ -17,6 +17,8 @@ module.exports =
                
             }); 
             
+                if(isNaN(args[0])) return message.channel.send("Please write the MPA number!");
+
                 let temp = message.guild.member(message.mentions.users.first());
                 let usertoremove = temp.displayName;
             

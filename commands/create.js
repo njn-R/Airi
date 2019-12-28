@@ -10,6 +10,8 @@ module.exports =
 	    description: 'Create an MPA',
         execute(message, args)
         {  
+            if(isNaN(args[0])) return message.channel.send("Please write the MPA number!");
+            
             let mpanumber = args[0];
             const mpaName = message.content.slice(10);
             

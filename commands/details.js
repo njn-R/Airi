@@ -18,6 +18,8 @@ module.exports =
         }); 
         mongoose.set('useCreateIndex', true);
 
+        if(isNaN(args[0])) return message.channel.send("Please write the MPA number!");
+        
         let M_number = args[0];
         Collection.findOne({'mpanumber':M_number}, (err, docs) =>
         {

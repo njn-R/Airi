@@ -17,7 +17,8 @@ module.exports =
             }); 
             mongoose.set('useCreateIndex', true);
 
-        
+            if(isNaN(args[0])) return message.channel.send("Please write the MPA number!");
+
             Collection.findOneAndUpdate({'mpanumber': args[0]}, {'maxplayercount': args[1]},(err,docs) =>
             {
                 if(err) 

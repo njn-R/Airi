@@ -17,6 +17,8 @@ module.exports =
                
             }); 
             
+                if(isNaN(args[0])) return message.channel.send("Please write the MPA number!");
+
                 var usertoremove = message.member.displayName;
         
                 if(usertoremove === null||usertoremove=== undefined)

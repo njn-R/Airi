@@ -14,18 +14,16 @@ module.exports =
                 useNewUrlParser: true,
                 useUnifiedTopology: true               
             }); 
-          
+
+                if(isNaN(args[0])) return message.channel.send("Please write the MPA number!"); 
+
                 let usertoadd = message.member.displayName;
                
                 if(usertoadd === null||usertoadd === undefined)
                 {
                     return message.channel.send("User not found");
                 }
-
-
-
-               
-               
+      
                 function getPlayercount(args)
                 {
                     var query = Collection.findOne({'mpanumber':args[0]});
@@ -38,7 +36,10 @@ module.exports =
                 {
                     if(err)
                         return console.log(err);
-                    
+                    if(docs === null)
+                    {
+                        return message.channel.send("MPA not found!"); 
+                    }       
                     try
                     {
                         var result = checkPlayer(Collection.players, usertoadd);   
