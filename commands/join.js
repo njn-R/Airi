@@ -36,17 +36,14 @@ module.exports =
                 {
                     if(err)
                         return console.log(err);
-                    if(query === null)
-                    {
-                        return message.channel.send("MPA not found!"); 
-                    }       
+             
                     try
                     {
                         var result = checkPlayer(Collection.players, usertoadd);   
                     }
                     catch
                     {
-                        return message.channel.send("Wrong command!");    
+                        return message.channel.send("MPA not found!");   
                     }
                      
                       
