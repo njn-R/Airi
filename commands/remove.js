@@ -25,7 +25,24 @@ module.exports =
                     return message.channel.send("User not found");
                 }
 
+                // let usertoremove = [];
+                // let temp = message.mentions.users;
+
+                // temp.forEach((users) => {
+                //     let temp2 = message.guild.member(users);
+                //     usertoremove.push(temp2.displayName);
+                // });
+
+                // if (typeof usertoremove !== 'undefined' && usertoremove.length === 0)
+                // {
+                //     return message.channel.send("No users mentioned!");
+                // }
+                
+                // let removePlayers = usertoremove.toString();
+                // message.channel.send(removePlayers);
+
                 Collection.findOneAndUpdate({'mpanumber': args[0], 'players': usertoremove}, { $pull: {'players': usertoremove }, $inc: {playercount:-1} },(err,docs) =>
+                //Collection.updateMany({'mpanumber': args[0]}, { $pull: {players: [removePlayers] }, $inc: {playercount:-(usertoremove.length)} },(err,docs) =>
                 {
                     if(err) 
                         console.log(err);
@@ -43,6 +60,7 @@ module.exports =
                         }    
                     }
                 });
+                Collection.save();
                 
                             
           

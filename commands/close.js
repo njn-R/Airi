@@ -33,7 +33,7 @@ module.exports =
                                 {
                                     return message.channel.send("MPA not found!"); 
                                 }              
-                                message.channel.send("MPA Closed!");    
+                                message.channel.send("MPA closed!");    
                             }
                         });
                 }

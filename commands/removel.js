@@ -19,13 +19,30 @@ module.exports =
             mongoose.set('useCreateIndex', true);
 
 
-                let temp = message.guild.member(message.mentions.users.first());
-                let temp2 = temp.displayName;
-                let usertoremove = temp2 + "   [Party Leader]";
+                // let temp = message.guild.member(message.mentions.users.first());
+                // let temp2 = temp.displayName;
+                // let usertoremove = temp2 + "   [Party Leader]";
                
-                if(usertoremove === null||usertoremove === undefined)
+                // if(usertoremove === null||usertoremove === undefined)
+                // {
+                //     return message.channel.send("User not found");
+                // }
+
+                if(isNaN(args[0])) return message.channel.send("Please write the MPA number too!");
+
+                let usertoremove = [];
+                let original = [];
+                let temp = message.mentions.users;
+
+                temp.forEach((users) => {
+                    let temp2 = message.guild.member(users);
+                    original.push(temp2.displayName);
+                    usertoremove.push(temp2.displayName + "   **[Party Leader]**");
+                });
+
+                if (typeof usertoremove !== 'undefined' && usertoremove.length === 0)
                 {
-                    return message.channel.send("User not found");
+                    return message.channel.send("No users mentioned!");
                 }
 
                 // Collection.findOneAndUpdate(
@@ -51,19 +68,22 @@ module.exports =
     
                         try 
                         {      
-                            let i;
+                            let i,j;
                             let arrayLength = Collection.players.length;
                             for(i=0;i<arrayLength;i++)
-                            {                        
-                                if(Collection.players[i]===usertoremove)
-                                {                                  
-                                    Collection.players.set(i, temp2);
-                                    Collection.save()
-                                    .then(function(result)
-                                    {
-                                        details.execute(message,args);
-                                    });
-                                    message.channel.send("Removed leader!");
+                            {                                
+                                for(j=0;j<usertoremove.length;j++)
+                                {     
+                                    if(Collection.players[i]===usertoremove[j])
+                                    {                                  
+                                        Collection.players.set(i, original[j]);
+                                        Collection.save()
+                                        .then(function(result)
+                                        {
+                                            details.execute(message,args);
+                                        });
+                                        message.channel.send("Removed " + original[j] + " from leaders!");
+                                    }
                                 }
                             }
                           

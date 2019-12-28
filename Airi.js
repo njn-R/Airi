@@ -1,7 +1,7 @@
 var apiaiApp = require('apiai')("f5f50d38b1974c54be0a71328d8920e4");
 const fs = require('fs');
 const Discord = require('discord.js');
-//const {prefix, token}= require('./config.json');
+const {prefix, token}= require('./config.json');
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();

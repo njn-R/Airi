@@ -17,15 +17,29 @@ module.exports =
             mongoose.set('useCreateIndex', true);
 
 
-                let temp = message.guild.member(message.mentions.users.first());
-                let usertoadd = temp.displayName;
+                // let temp = message.guild.member(message.mentions.users.first());
+                // let usertoadd = temp.displayName;
                
-                if(usertoadd === null||usertoadd === undefined)
-                {
-                    return message.channel.send("User not found");
-                }
+                // if(usertoadd === null||usertoadd === undefined)
+                // {
+                //     return message.channel.send("User not found");
+                // }
 
-        
+
+                if(isNaN(args[0])) return message.channel.send("Please write the MPA number too!");
+
+                let usertoadd = [];
+                let temp = message.mentions.users;
+
+                temp.forEach((users) => {
+                    let temp2 = message.guild.member(users);
+                    usertoadd.push(temp2.displayName);
+                });
+                
+                if (typeof usertoadd !== 'undefined' && usertoadd.length === 0)
+                {
+                    return message.channel.send("No users mentioned!");
+                }
 
                 function getPlayercount(args)
                 {
@@ -40,34 +54,39 @@ module.exports =
                     if(err)
                         return console.log(err);
                     
-                    
+
                         try 
-                        {   var result = checkPlayer(Collection.players, usertoadd);   
+                        {   
+                            var result = checkPlayer(Collection.players, usertoadd);   
                           
                             if(result === true)
                             {   
-                                return message.channel.send("I already added that player!");
+                                return message.channel.send("Player(s) already in MPA!");
                             }
                             else
                             {
                                 checkMPAFull(Collection.playercount, Collection.maxplayercount);
                             } 
                         }
-                        catch{
-                            return message.channel.send("Please write the MPA name too!");
+                        catch
+                        {
+                            return message.channel.send("Player(s) already in MPA!");
                         }
                 });
 
                 function checkPlayer(players, usertoadd)
                 {
-                            
-                        if(players.includes(usertoadd))
-                        {
-                            return true;
+
+                        for(let i = 0; i<usertoadd.length; i++)
+                        {                        
+                            if(players.includes(usertoadd[i]))
+                            {
+                                return true;
+                            }
+                            else
+                                return false;
                         }
-                        else
-                            return false;
-                
+                                
                 }
 
                 function checkMPAFull(playercount, maxplayercount)
@@ -90,7 +109,7 @@ module.exports =
                                 message.channel.send("Added " + usertoadd + " to MPA!");    
                             }
                         });
-                        Collection.updateOne( { 'mpanumber': args[0] }, {$inc: {playercount:1}  }, (err,docs) =>
+                        Collection.updateOne( { 'mpanumber': args[0] }, {$inc: {playercount:usertoadd.length}  }, (err,docs) =>
                         {
                             if(err) 
                                 console.log(err);

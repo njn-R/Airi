@@ -2,6 +2,7 @@ const mongoose = require('mongoose').set('debug', true);
 const Collection = require("../models/model.js");
 var details = require("./details.js")
 
+
 module.exports =
     {
 	    name: 'leader',
@@ -17,16 +18,31 @@ module.exports =
                
             }); 
             mongoose.set('useCreateIndex', true);
+        
 
+                // let temp = message.guild.member(message.mentions.users.first());
+                // let usertoadd = temp.displayName;
+                // if(usertoadd === null||usertoadd === undefined)
+                // {
+                //     return message.channel.send("User not found");
+                // }
 
-                let temp = message.guild.member(message.mentions.users.first());
-                let usertoadd = temp.displayName;
-            
-                if(usertoadd === null||usertoadd === undefined)
+                if(isNaN(args[0])) return message.channel.send("Please write the MPA number too!");
+
+                let usertoadd = [];
+                let temp = message.mentions.users;
+
+                temp.forEach((users) => {
+                    let temp2 = message.guild.member(users);
+                    usertoadd.push(temp2.displayName);
+                });
+
+                if (typeof usertoadd !== 'undefined' && usertoadd.length === 0)
                 {
-                    return message.channel.send("User not found");
+                    return message.channel.send("No users mentioned!");
                 }
-
+            
+ 
                 var query =  Collection.findOne({'mpanumber':args[0]});
                 query.select('players');
                 query.exec(function(err,Collection)
@@ -36,21 +52,24 @@ module.exports =
     
                         try 
                         {      
-                            let i;
+                            let i,j;
                             let arrayLength = Collection.players.length;
                             for(i=0;i<arrayLength;i++)
-                            {                              
-                                if(Collection.players[i]===usertoadd)
-                                {
-                                    
-                                    let temp = usertoadd + "   [Party Leader]";
-                                    Collection.players.set(i, temp);
-                                    Collection.save()
-                                    .then(function(result){
-                                        details.execute(message,args);
-                                    });
-                                    message.channel.send(usertoadd +" set as leader!");
+                            {       
+                                for(j=0;j<usertoadd.length;j++)
+                                {                       
+                                    if(Collection.players[i]===usertoadd[j])
+                                    {
+                                        
+                                        let temp = usertoadd[j] + "   **[Party Leader]**";
+                                        Collection.players.set(i, temp);
+                                        Collection.save()
+                                        .then(function(result){
+                                            details.execute(message,args);
+                                        });
+                                        message.channel.send(usertoadd[j] +" set as leader!");
 
+                                    }
                                 }
                             }
                                
