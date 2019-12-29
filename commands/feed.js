@@ -9,6 +9,7 @@ module.exports =
         let birbGifs = ["https://giphy.com/gifs/jVEPGJEn9gT269bDCo", "https://giphy.com/gifs/2wZ07PIbTSbenXUTxM"]
         let sharkGifs = ["https://tenor.com/view/angry-shocked-shark-shark-attack-gif-7814441", "https://tenor.com/view/cat-shark-kitten-surprise-gif-5053865", "https://tenor.com/view/shark-shark-breaching-breaching-ocean-attack-gif-5104846"]
         let tunaGifs = ["https://giphy.com/gifs/calacademy-eating-hungry-cAgGr4wGNRxqEv5V1u", "https://giphy.com/gifs/77mYSerTbrBzW", "https://giphy.com/gifs/supersimple-pets-feeding-ulKHURTkvPoAUG3mzv"]
+        let mouseGifs = ["https://tenor.com/view/ratatouille-cute-rat-eating-spaghetti-gif-15430973", "https://tenor.com/view/pumpkin-pie-pilgrim-pie-eating-pie-happy-thanksgiving-gif-12857426", "https://tenor.com/view/mouse-flower-baby-mouse-cute-animals-gif-3544689"];
         let defaultGifs = ["No!"]
 
         let user = message.mentions.users.first();
@@ -20,7 +21,9 @@ module.exports =
             else if (message.author.id === "318629503830065152")
                 return message.channel.send(birbGifs[Math.floor(Math.random() * birbGifs.length)]); 
             else if (message.author.id === "391937000745467904")
-                return message.channel.send(sharkGifs[Math.floor(Math.random() * sharkGifs.length)]); 
+                return message.channel.send(sharkGifs[Math.floor(Math.random() * sharkGifs.length)]);
+            else if (message.author.id === "125532768099631104")
+                return message.channel.send(mouseGifs[Math.floor(Math.random() * mouseGifs.length)]);
             else
                 return message.channel.send(defaultGifs[Math.floor(Math.random() * defaultGifs.length)]);
         }      
@@ -32,6 +35,8 @@ module.exports =
                 return message.channel.send(birbGifs[Math.floor(Math.random() * birbGifs.length)]);   
             else if (user.id === "391937000745467904")
                 return message.channel.send(sharkGifs[Math.floor(Math.random() * sharkGifs.length)]);   
+            else if(user.id === "125532768099631104")   
+                return message.channel.send(mouseGifs[Math.floor(Math.random() * mouseGifs.length)]);        
             else
                 return message.channel.send(defaultGifs[Math.floor(Math.random() * defaultGifs.length)]);
         }    
@@ -46,6 +51,10 @@ module.exports =
         else if(args[0].includes('shark') || args[0].includes('samee') || args[0].includes('summe'))
         {
             return message.channel.send(sharkGifs[Math.floor(Math.random() * sharkGifs.length)]);
+        }
+        else if(args[0].includes('mouse') || args[0].includes('mousy') || args[0].includes('epicmouse'))
+        {
+            return message.channel.send(mouseGifs[Math.floor(Math.random() * mouseGifs.length)]);
         }
         else
             return message.channel.send(defaultGifs[Math.floor(Math.random() * defaultGifs.length)]);
