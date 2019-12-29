@@ -14,7 +14,7 @@ module.exports =
 
         let user = message.mentions.users.first();
 
-        if(args[0].includes('me'))
+        if(args[0] === 'me')
         {
             if(message.author.id === "97353162532339712")
                 return message.channel.send(tunaGifs[Math.floor(Math.random() * tunaGifs.length)]);       
