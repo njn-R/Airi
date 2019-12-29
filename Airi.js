@@ -56,7 +56,7 @@ bot.on('message', async message =>
 
 		bot.commands.get(command).execute(message, args);			
 	}
-	else
+	else(message.channel.id == "444172461362380801" || message.channel.id =="660830134873489408")
 	{
 		const args = message.content.slice(prefix.length).split(/ +/);	
 		var command = args.shift().toLowerCase();
