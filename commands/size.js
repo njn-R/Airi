@@ -1,41 +1,35 @@
-const mongoose = require('mongoose').set('debug', true);
+const mongoose = require('mongoose');
 const Collection = require("../models/model.js");
 
 module.exports =
-    {
-	    name: 'size',
-	    description: 'Change MPA size',
-        execute(message, args)
-        {         
-            //Connect to database
-            mongoose.connect(process.env.mongodb,{
-            //mongoose.connect('mongodb://localhost/db',{
-                useNewUrlParser: true,
-                useFindAndModify: false,
-                useUnifiedTopology: true,
-               
-            }); 
-            mongoose.set('useCreateIndex', true);
+{
+    name: 'size',
+    description: 'Change MPA size',
+    execute(message, args)
+    {         
+        mongoose.connect(process.env.mongodb,{
+        //mongoose.connect('mongodb://localhost/db',{
+            useNewUrlParser: true,
+            useFindAndModify: false,
+            useUnifiedTopology: true,         
+        }); 
+        mongoose.set('useCreateIndex', true);
 
-            if(isNaN(args[0])) return message.channel.send("Please write the MPA number!");
+        if(isNaN(args[0])) return message.channel.send("Please write the MPA number!");
 
-            Collection.findOneAndUpdate({'mpanumber': args[0]}, {'maxplayercount': args[1]},(err,docs) =>
+        Collection.findOneAndUpdate({'mpanumber': args[0]}, {'maxplayercount': args[1]},(err,docs) =>
+        {
+            if(err) 
+                console.log(err);
+            else 
             {
-                if(err) 
-                    console.log(err);
-                else 
-                {
-                    console.log(docs);  
-                    if(docs === null)
-                    {
-                        return message.channel.send("MPA not found!"); 
-                    }              
+                if(docs === null)
+                    return message.channel.send("MPA not found!"); 
+                else    
                     message.channel.send("Changed MPA size!");    
-                }
-            });
-                       
-
-        }                    
+            }
+        });
+    }                    
 };
 
 

@@ -1,134 +1,79 @@
-const mongoose = require('mongoose').set('debug', true);
+const mongoose = require('mongoose');
 const Collection = require("../models/model.js");
 var details = require("./details.js")
 
 module.exports =
-    {
-	    name: 'add',
-	    description: 'Add to MPA',
-        execute(message, args)
-        {         
-            //Connect to database
-            mongoose.connect(process.env.mongodb,{
-            //mongoose.connect('mongodb://localhost/db',{
-                useNewUrlParser: true,
-                useUnifiedTopology: true               
+{
+    name: 'add',
+    description: 'Add to MPA',
+    execute(message, args)
+    {         
+        mongoose.connect(process.env.mongodb,{
+        //mongoose.connect('mongodb://localhost/db',{
+            useNewUrlParser: true,
+            useUnifiedTopology: true               
+        }); 
+        mongoose.set('useCreateIndex', true);
+
+
+            if(isNaN(args[0])) 
+                return message.channel.send("Please write the MPA number!");
+
+            let usertoadd = [];
+            let temp = message.mentions.users;
+            temp.forEach((users) => {
+                let temp2 = message.guild.member(users);
+                usertoadd.push(temp2.displayName);
             }); 
-            mongoose.set('useCreateIndex', true);
+            if (typeof usertoadd !== 'undefined' && usertoadd.length === 0)
+                return message.channel.send("No users mentioned!");
+            
 
+            var query =  Collection.findOne({'mpanumber':args[0]});
+            if(query.mongooseCollection.collection == null)
+                return message.channel.send("No MPA found!");
+            query.select('playercount maxplayercount players');
+            query.exec(function(err,Collection)
+            {
+                if(err)
+                    return console.log(err);
+                else             
+                    checkPlayer(Collection.players, usertoadd , Collection.playercount, Collection.maxplayercount);                                     
+            });
 
-                // let temp = message.guild.member(message.mentions.users.first());
-                // let usertoadd = temp.displayName;
-               
-                // if(usertoadd === null||usertoadd === undefined)
-                // {
-                //     return message.channel.send("User not found");
-                // }
-
-
-                if(isNaN(args[0])) return message.channel.send("Please write the MPA number!");
-
-                let usertoadd = [];
-                let temp = message.mentions.users;
-
-                temp.forEach((users) => {
-                    let temp2 = message.guild.member(users);
-                    usertoadd.push(temp2.displayName);
-                });
-                
-                if (typeof usertoadd !== 'undefined' && usertoadd.length === 0)
-                {
-                    return message.channel.send("No users mentioned!");
-                }
-
-                function getPlayercount(args)
-                {
-                    var query = Collection.findOne({'mpanumber':args[0]});
-                    return query;
-                }
-
-                var query =  getPlayercount(args);
-                query.select('playercount maxplayercount players');
-                query.exec(function(err,Collection)
-                {
-                    if(err)
-                        return console.log(err);
-                    
-
-                        try 
-                        {   
-                            var result = checkPlayer(Collection.players, usertoadd);   
-                          
-                            if(result === true)
-                            {   
-                                return message.channel.send("Player(s) already in MPA!");
-                            }
-                            else
-                            {
-                                checkMPAFull(Collection.playercount, Collection.maxplayercount);
-                            } 
-                        }
-                        catch
+            function checkPlayer(players, usertoadd, playercount, maxplayercount)
+            {
+                    for(let i = 0; i<usertoadd.length; i++)
+                    {                        
+                        if(players.includes(usertoadd[i]))
                         {
-                            return message.channel.send("Player(s) already in MPA!");
-                        }
-                });
+                            if(usertoadd.length === 1)             
+                                return message.channel.send("Player already in MPA!");                
+                            else                  
+                                return message.channel.send("One or more of those players already in MPA!");                          
+                        }                    
+                        else
+                            addPlayer(playercount, maxplayercount);
+                    }                        
+            }
 
-                function checkPlayer(players, usertoadd)
+            function addPlayer(playercount, maxplayercount)
+            {       
+                if(playercount === maxplayercount)                
+                    message.channel.send("MPA is full!");                          
+                else
                 {
-
-                        for(let i = 0; i<usertoadd.length; i++)
-                        {                        
-                            if(players.includes(usertoadd[i]))
-                            {
-                                return true;
-                            }
-                            else
-                                return false;
-                        }
-                                
-                }
-
-                function checkMPAFull(playercount, maxplayercount)
-                {
-                    
-                    if(playercount === maxplayercount)
+                    Collection.updateMany( {'mpanumber': args[0] },{$push: {players: usertoadd}, $inc: {playercount:usertoadd.length}}, (err,docs) =>
                     {
-                        message.channel.send("MPA is full!");   
-                    }
-                    else{
-
-                        
-                        Collection.updateOne( { 'mpanumber': args[0] },{$push: {players: usertoadd}}, (err,docs) =>
-                        {
-                            if(err) 
-                                console.log(err);
-                            else 
-                            {
-                                console.log(docs);                    
-                                message.channel.send("Added " + usertoadd + " to MPA!");    
-                            }
-                        });
-                        Collection.updateOne( { 'mpanumber': args[0] }, {$inc: {playercount:usertoadd.length}  }, (err,docs) =>
-                        {
-                            if(err) 
-                                console.log(err);
-                            else 
-                            {
-                                console.log(docs);                      
-                            }
-                        });    
-                        
-                    }
-                    details1(message, args);
-                }
-                
-                function details1(message,args)
-                {
-                    details.execute(message,args);
-                }
-        }   
-                         
+                        if(err) 
+                            console.log(err);
+                        else                                                                   
+                            message.channel.send("Added " + usertoadd + " to MPA!");             
+                    });                      
+                }               
+                details.execute(message,args);
+            }
+    }                           
 };
 
 module.exports.help =
