@@ -61,7 +61,7 @@ bot.on('message', async message =>
 		const args = message.content.slice(prefix.length).split(/ +/);	
 		var command = args.shift().toLowerCase();
 		if(command === "feed")
-			bot.commands.get("feed").execute(message, args);
+			bot.commands.get(command).execute(message, args);
 	}
 			
 });
