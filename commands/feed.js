@@ -63,7 +63,8 @@ module.exports =
                                            break
                 case "406708783981789194": message.channel.send(mikoGifs[Math.floor(Math.random() * mikoGifs.length)])
                                            break    
-                                default  : message.channel.send(defaultGifs[Math.floor(Math.random() * defaultGifs.length)])                                     
+                                default  : message.channel.send(defaultGifs[Math.floor(Math.random() * defaultGifs.length)]) 
+                                           break                                    
             }
         }      
         else if(user != null)
@@ -88,7 +89,8 @@ module.exports =
                                            break
                 case "406708783981789194": message.channel.send(mikoGifs[Math.floor(Math.random() * mikoGifs.length)])
                                            break    
-                                default  : message.channel.send(defaultGifs[Math.floor(Math.random() * defaultGifs.length)])                                     
+                                default  : message.channel.send(defaultGifs[Math.floor(Math.random() * defaultGifs.length)])  
+                                           break                                   
             }
         }    
         else if(args[0].includes('tuna') || args[0].includes('fish'))

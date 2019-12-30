@@ -1,8 +1,6 @@
 var apiaiApp = require('apiai')("f5f50d38b1974c54be0a71328d8920e4");
 const fs = require('fs');
 const Discord = require('discord.js');
-var request = require('request');
-
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
@@ -13,7 +11,6 @@ for (const file of commandFiles)
 	const command = require(`./commands/${file}`);
 	bot.commands.set(command.name, command);
 }
-
 
 bot.once('ready', () =>
 {
@@ -57,35 +54,8 @@ bot.on('message', async message =>
 		if (!bot.commands.has(command)) return;
 		bot.commands.get(command).execute(message, args);			
 	}
-
-	if(command === "feed")
-		bot.commands.get(command).execute(message, args);
-	else
-	{
-		var term = encodeURI(command)
-
-		// make a request to giphy with the search term
-		// we can also set the raiting 
-		request('http://api.giphy.com/v1/gifs/search?q=' + term + '&rating=r&api_key=dc6zaTOxFJmzC', function (error, response, body) {
-		  if (!error && response.statusCode == 200) {
-
-		  	content =  JSON.parse(body)
-
-		  	// giphy returns several results so we can grab a random result by generating a random index
-		  	// random number between 0 and 10
-		  	item = Math.floor(Math.random() * 10)
-
-		  	// reply to the channel by sending a message (image url)
-		    bot.sendMessage({
-	            to: channelID,
-	            message: content.data[item].images.fixed_height.url
-	        });
-		  }
-		})
-	}
-	
-
-
+	else if(command === "feed")
+		bot.commands.get(command).execute(message, args);	
 			
 });
 
@@ -157,7 +127,5 @@ bot.on('message', async message =>
 	//console.log(user.username + " reacted");
 //});
 	
-
-
 bot.login(process.env.token);
 
