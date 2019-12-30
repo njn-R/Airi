@@ -1,6 +1,7 @@
 var apiaiApp = require('apiai')("f5f50d38b1974c54be0a71328d8920e4");
 const fs = require('fs');
 const Discord = require('discord.js');
+var request = require('request');
 //const {prefix, token}= require('./config.json');
 
 const bot = new Discord.Client();
@@ -36,7 +37,6 @@ bot.on('message', async message =>
 				else
 					message.channel.send(response.result.fulfillment.speech);	
 		});
-	
 		request.on('error', (error) => 
 		{
 			message.channel.send("The hamsters in my server ran away D:")
@@ -46,24 +46,45 @@ bot.on('message', async message =>
 	
 	if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
 	//if (!message.content.startsWith(prefix) || message.author.bot) return;
-	else if(message.channel.id == "591605442661318667" || message.channel.id =="649639369061171200" || message.channel.id == "580654853454561290")
+	
+	const args = message.content.slice(process.env.prefix.length).split(/ +/);
+	//const args = message.content.slice(prefix.length).split(/ +/);	
+	var command = args.shift().toLowerCase();
+	
+	if(message.channel.id == "591605442661318667" || message.channel.id =="649639369061171200" || message.channel.id == "580654853454561290")
 	{
-		const args = message.content.slice(process.env.prefix.length).split(/ +/);
-		//const args = message.content.slice(prefix.length).split(/ +/);	
-		var command = args.shift().toLowerCase();
-
 		if (!bot.commands.has(command)) return;
-
 		bot.commands.get(command).execute(message, args);			
 	}
-	else 
+
+	if(command === "feed")
+		bot.commands.get(command).execute(message, args);
+	else
 	{
-		const args = message.content.slice(process.env.prefix.length).split(/ +/);
-		//const args = message.content.slice(prefix.length).split(/ +/);	
-		var command = args.shift().toLowerCase();
-		if(command === "feed")
-			bot.commands.get(command).execute(message, args);
+		var term = encodeURI(command)
+
+		// make a request to giphy with the search term
+		// we can also set the raiting 
+		request('http://api.giphy.com/v1/gifs/search?q=' + term + '&rating=r&api_key=dc6zaTOxFJmzC', function (error, response, body) {
+		  if (!error && response.statusCode == 200) {
+
+		  	content =  JSON.parse(body)
+
+		  	// giphy returns several results so we can grab a random result by generating a random index
+		  	// random number between 0 and 10
+		  	item = Math.floor(Math.random() * 10)
+
+		  	// reply to the channel by sending a message (image url)
+		    bot.sendMessage({
+	            to: channelID,
+	            message: content.data[item].images.fixed_height.url
+	        });
+		  }
+		})
 	}
+	
+
+
 			
 });
 
