@@ -2,7 +2,7 @@ var apiaiApp = require('apiai')("f5f50d38b1974c54be0a71328d8920e4");
 const fs = require('fs');
 const Discord = require('discord.js');
 var request = require('request');
-//const {prefix, token}= require('./config.json');
+
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
@@ -25,30 +25,31 @@ bot.on('message', async message =>
 {
 	//AI Chat	
 	if ((message.channel.id == "591605442661318667" || message.channel.id =="649639369061171200" || message.channel.id == "580654853454561290") && !message.author.bot) 
-	{			
-		var text = message.content;
-		var request = apiaiApp.textRequest(text, {
-			sessionId: 'uwu'
-		});	
-		request.on('response', (response) => 
-		{		
-				if(!response.result.fulfillment.speech || response.result.fulfillment.speech.length === 0)
-					return;
-				else
-					message.channel.send(response.result.fulfillment.speech);	
-		});
-		request.on('error', (error) => 
-		{
-			message.channel.send("The hamsters in my server ran away D:")
-		});
-		request.end();
+	{	
+		if (!message.content.startsWith(process.env.prefix))
+		{	
+			var text = message.content;
+			var request = apiaiApp.textRequest(text, {
+				sessionId: 'uwu'
+			});	
+			request.on('response', (response) => 
+			{		
+					if(!response.result.fulfillment.speech || response.result.fulfillment.speech.length === 0)
+						return;
+					else
+						message.channel.send(response.result.fulfillment.speech);	
+			});
+			request.on('error', (error) => 
+			{
+				message.channel.send("The hamsters in my server ran away D:")
+			});
+			request.end();
+		}	
 	}
 	
 	if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
-	//if (!message.content.startsWith(prefix) || message.author.bot) return;
 	
-	const args = message.content.slice(process.env.prefix.length).split(/ +/);
-	//const args = message.content.slice(prefix.length).split(/ +/);	
+	const args = message.content.slice(process.env.prefix.length).split(/ +/);	
 	var command = args.shift().toLowerCase();
 	
 	if(message.channel.id == "591605442661318667" || message.channel.id =="649639369061171200" || message.channel.id == "580654853454561290")
@@ -159,4 +160,4 @@ bot.on('message', async message =>
 
 
 bot.login(process.env.token);
-//bot.login(token);
+

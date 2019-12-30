@@ -8,7 +8,6 @@ module.exports =
     execute(message, args)
     {         
         mongoose.connect(process.env.mongodb,{
-        //mongoose.connect('mongodb://localhost/db',{
             useNewUrlParser: true,
             useFindAndModify: false,
             useUnifiedTopology: true,           
