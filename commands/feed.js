@@ -65,26 +65,6 @@ module.exports =
                                            break    
                                 default  : message.channel.send(defaultGifs[Math.floor(Math.random() * defaultGifs.length)])                                     
             }
-            // if(message.author.id === "97353162532339712")
-            //     return message.channel.send(tunaGifs[Math.floor(Math.random() * tunaGifs.length)]);       
-            // else if (message.author.id === "318629503830065152")
-            //     return message.channel.send(birbGifs[Math.floor(Math.random() * birbGifs.length)]); 
-            // else if (message.author.id === "391937000745467904")
-            //     return message.channel.send(sharkGifs[Math.floor(Math.random() * sharkGifs.length)]);
-            // else if (message.author.id === "125532768099631104")
-            //     return message.channel.send(mouseGifs[Math.floor(Math.random() * mouseGifs.length)]);
-            // else if (message.author.id === "480464745921642497")
-            //     return message.channel.send(nonaGifs[Math.floor(Math.random() * nonaGifs.length)]);
-            // else if (message.author.id === "265512952361254913")
-            //     return message.channel.send(rockGifs[Math.floor(Math.random() * rockGifs.length)]);
-            // else if (message.author.id === "153378756310990848")
-            //     return message.channel.send(kariGifs[Math.floor(Math.random() * kariGifs.length)]);
-            // else if (message.author.id === "614233366904176641")
-            //     return message.channel.send(sankakuGifs[Math.floor(Math.random() * sankakuGifs.length)]);
-            // else if (message.author.id === "406708783981789194")
-            //     return message.channel.send(mikoGifs[Math.floor(Math.random() * mikoGifs.length)]);
-            // else
-            //     return message.channel.send(defaultGifs[Math.floor(Math.random() * defaultGifs.length)]);
         }      
         else if(user != null)
         {   
@@ -110,26 +90,6 @@ module.exports =
                                            break    
                                 default  : message.channel.send(defaultGifs[Math.floor(Math.random() * defaultGifs.length)])                                     
             }
-            // if(user.id === "97353162532339712")
-            //     return message.channel.send(tunaGifs[Math.floor(Math.random() * tunaGifs.length)]);       
-            // else if (user.id === "318629503830065152")
-            //     return message.channel.send(birbGifs[Math.floor(Math.random() * birbGifs.length)]);   
-            // else if (user.id === "391937000745467904")
-            //     return message.channel.send(sharkGifs[Math.floor(Math.random() * sharkGifs.length)]);   
-            // else if(user.id === "125532768099631104")   
-            //     return message.channel.send(mouseGifs[Math.floor(Math.random() * mouseGifs.length)]);           
-            // else if (user.id === "480464745921642497")
-            //     return message.channel.send(nonaGifs[Math.floor(Math.random() * nonaGifs.length)]);
-            // else if (user.id === "265512952361254913")
-            //     return message.channel.send(rockGifs[Math.floor(Math.random() * rockGifs.length)]);
-            // else if (user.id === "153378756310990848")
-            //     return message.channel.send(kariGifs[Math.floor(Math.random() * kariGifs.length)]);
-            // else if (user.id === "614233366904176641")
-            //     return message.channel.send(sankakuGifs[Math.floor(Math.random() * sankakuGifs.length)]);
-            // else if (user.id === "406708783981789194")
-            //     return message.channel.send(mikoGifs[Math.floor(Math.random() * mikoGifs.length)]);
-            // else
-            //     return message.channel.send(defaultGifs[Math.floor(Math.random() * defaultGifs.length)]);
         }    
         else if(args[0].includes('tuna') || args[0].includes('fish'))
             return message.channel.send(tunaGifs[Math.floor(Math.random() * tunaGifs.length)]); 
