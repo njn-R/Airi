@@ -6,8 +6,7 @@
   "dependencies": {
     "apiai": "^4.0.3",
     "discord.js": "^11.5.1",
-    "mongoose": "^5.7.12",
-    "request" : "^2.88.0"  
+    "mongoose": "^5.7.12"
   },
   "devDependencies": {},
   "scripts": {
