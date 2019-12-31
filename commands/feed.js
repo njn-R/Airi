@@ -23,7 +23,7 @@ module.exports =
                         "https://tenor.com/view/throw-gif-6112851",
                         "https://tenor.com/view/hungry-throw-food-eat-this-hit-spiderman-gif-14536727", 
                         "https://tenor.com/view/pie-face-smash-throw-food-head-shot-food-fight-gif-14729465"]
-        let rockGifs = ["https://tenor.com/view/feed-feeding-gif-12083398"]
+        let rockGifs = ["https://i.imgur.com/ibeSqc8.gifv"]
         let kariGifs = ["https://tenor.com/view/cute-kitten-feed-me-gif-5668010", 
                         "https://tenor.com/view/food-eat-cat-feed-gif-12269959", 
                         "https://tenor.com/view/cats-kittens-hungry-cute-milk-gif-3487602",
@@ -103,7 +103,7 @@ module.exports =
             return message.channel.send(mouseGifs[Math.floor(Math.random() * mouseGifs.length)]);
         else if (args[0].includes('nona') || args[0].includes('nano') || args[0].includes('non')) 
             return message.channel.send(nonaGifs[Math.floor(Math.random() * nonaGifs.length)]);
-        else if (args[0].includes('rock') || args[0].includes('rabbit') || args[0].includes('rocket')) 
+            else if (args[0].includes('rock') || args[0].includes('rabbit') || args[0].includes('rocket') || args[0].incldes('boss') || args[0].includes('verda'))
             return message.channel.send(rockGifs[Math.floor(Math.random() * rockGifs.length)]);
         else if (args[0].includes('kari') || args[0].includes('curry') || args[0].includes('curri')) 
             return message.channel.send(kariGifs[Math.floor(Math.random() * kariGifs.length)]);

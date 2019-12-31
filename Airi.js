@@ -56,6 +56,11 @@ bot.on('message', async message =>
 	}
 	else if(command === "feed")
 		bot.commands.get(command).execute(message, args);	
+	else if(command === "fetch")
+	{
+		if(args[0] === "rock" || args[0] === "rocket" || args[0] === "boss" || args[0] === "verda" || args[o] === "rabbit")
+			message.channel.send("https://i.imgur.com/RjBYCmL.gifv");
+	}
 	else 
 	{	
 		var tags = "anime";
