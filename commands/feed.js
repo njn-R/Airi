@@ -103,7 +103,7 @@ module.exports =
             return message.channel.send(mouseGifs[Math.floor(Math.random() * mouseGifs.length)]);
         else if (args[0].includes('nona') || args[0].includes('nano') || args[0].includes('non')) 
             return message.channel.send(nonaGifs[Math.floor(Math.random() * nonaGifs.length)]);
-            else if (args[0].includes('rock') || args[0].includes('rabbit') || args[0].includes('rocket') || args[0].incldes('boss') || args[0].includes('verda'))
+            else if (args[0].includes('rock') || args[0].includes('rabbit') || args[0].includes('rocket') || args[0].includes('boss') || args[0].includes('verda'))
             return message.channel.send(rockGifs[Math.floor(Math.random() * rockGifs.length)]);
         else if (args[0].includes('kari') || args[0].includes('curry') || args[0].includes('curri')) 
             return message.channel.send(kariGifs[Math.floor(Math.random() * kariGifs.length)]);
