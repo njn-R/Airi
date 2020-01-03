@@ -96,7 +96,9 @@ module.exports =
                                 default  : message.channel.send(defaultGifs[Math.floor(Math.random() * defaultGifs.length)])  
                                            break                                   
             }
-        }    
+        }
+        else if(args[0] == null)
+            return;
         else if(args[0].includes('tuna') || args[0].includes('fish'))
             return message.channel.send(tunaGifs[Math.floor(Math.random() * tunaGifs.length)]); 
         else if(args[0].includes('birb') || args[0].includes('bird'))
