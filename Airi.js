@@ -69,7 +69,7 @@ bot.on('message', async message =>
 		tags = tags.concat(command);
 		const Tenor = require("tenorjs").client({
 			"Key": "IBEW4A0KACM3", // https://tenor.com/developer/keyregistration
-			"Filter": "off", // "off", "low", "medium", "high", not case sensitive
+			"Filter": "low", // "off", "low", "medium", "high", not case sensitive
 			"Locale": "en_US", // Your locale here, case-sensitivity depends on input
 			"MediaFilter": "minimal", // either minimal or basic, not case sensitive
 			"DateFormat": "D/MM/YYYY - H:mm:ss A" // Change this accordingly
