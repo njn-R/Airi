@@ -63,11 +63,9 @@ bot.on('message', async message =>
 	}
 	else 
 	{	
-		//var tags = "anime";
-		var tags = "";
+		var tags = "anime";
 		tags = tags.concat(command);
-		//var tags = args;
-		//tags = tags.concat(command);
+	
 		const Tenor = require("tenorjs").client({
 			"Key": "IBEW4A0KACM3", // https://tenor.com/developer/keyregistration
 			"Filter": "low", // "off", "low", "medium", "high", not case sensitive
