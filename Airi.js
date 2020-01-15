@@ -63,7 +63,9 @@ bot.on('message', async message =>
 	}
 	else 
 	{	
-		var tags = "anime";
+		//var tags = "anime";
+		//tags = tags.concat(command);
+		var tags = args;
 		tags = tags.concat(command);
 		const Tenor = require("tenorjs").client({
 			"Key": "IBEW4A0KACM3", // https://tenor.com/developer/keyregistration
@@ -72,7 +74,8 @@ bot.on('message', async message =>
 			"MediaFilter": "minimal", // either minimal or basic, not case sensitive
 			"DateFormat": "D/MM/YYYY - H:mm:ss A" // Change this accordingly
 		});
-		Tenor.Search.Random(tags, "1").then(Results => {
+		//Tenor.Search.Random(tags, "1").then(Results => {
+		Tenor.Search.Query(tags, "1").then(Results => {
 			Results.forEach(Post => {
 					message.channel.send(Post.url);
 			});
