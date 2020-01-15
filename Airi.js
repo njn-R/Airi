@@ -64,7 +64,8 @@ bot.on('message', async message =>
 	else 
 	{	
 		//var tags = "anime";
-		var tags = tags.concat(command);
+		var tags = "";
+		tags = tags.concat(command);
 		//var tags = args;
 		//tags = tags.concat(command);
 		const Tenor = require("tenorjs").client({
