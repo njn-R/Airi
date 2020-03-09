@@ -22,42 +22,42 @@ module.exports =
         let mpcount;
         let eqimage;
 
-        if(mpaName.includes('persona') || mpaName.includes('mask'))
+        if(mpaName.toLowerCase().includes('persona') || mpaName.toLowerCase().includes('mask'))
         {
             mpcount = 12;
             eqimage = 'https://i.imgur.com/dVk6uF5.jpg';
         }
-        else if(mpaName.includes('eva'))
+        else if(mpaName.toLowerCase().includes('eva'))
         {
             mpcount = 8;
             eqimage = 'https://i.imgur.com/vQNMF02.png';   
         }
-        else if(mpaName.includes('pd') || mpaName.includes('profound'))
+        else if(mpaName.toLowerCase().includes('pd') || mpaName.toLowerCase().includes('profound'))
         {
             mpcount = 12;  
             eqimage = 'https://i.imgur.com/DUH9rKa.png';
         }
-        else if(mpaName.includes('dragon') || mpaName.includes('lizard'))
+        else if(mpaName.toLowerCase().includes('dragon') || mpaName.toLowerCase().includes('lizard'))
         {
             mpcount = 12;  
             eqimage = 'https://i.imgur.com/lMqNAdA.png';
         }
-        else if(mpaName.includes('armada'))
+        else if(mpaName.toLowerCase().includes('armada'))
         {
             mpcount = 8; 
             eqimage = 'https://i.imgur.com/5UQAw5e.png';   
         }  
-        else if(mpaName.includes('white') || mpaName.includes('wd'))
+        else if(mpaName.toLowerCase().includes('white') || mpaName.toLowerCase().includes('wd'))
         {
             mpcount = 12; 
             eqimage = 'https://i.imgur.com/cQz2N83.png';   
         }   
-        else if(mpaName.includes('choco'))
+        else if(mpaName.toLowerCase().includes('choco'))
         {
             mpcount = 12; 
             eqimage = 'https://i.imgur.com/UZ1qyrW.png';   
         }           
-        else if(mpaName.includes('trigger') || mpaName.includes('tg'))
+        else if(mpaName.toLowerCase().includes('trigger') || mpaName.toLowerCase().includes('tg'))
         {
             mpcount = 4; 
             eqimage = 'https://i.imgur.com/iDGpHuG.jpg';   
