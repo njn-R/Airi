@@ -49,7 +49,7 @@ bot.on('message', async message =>
 	const args = message.content.slice(process.env.prefix.length).split(/ +/);	
 	var command = args.shift().toLowerCase();
 	
-	if(message.channel.id == "591605442661318667" || message.channel.id =="649639369061171200" || message.channel.id == "580654853454561290")
+	if(message.channel.id == "685384802387755046" || message.channel.id == "580654853454561290")
 	{
 		if (!bot.commands.has(command)) return;
 		bot.commands.get(command).execute(message, args);			
