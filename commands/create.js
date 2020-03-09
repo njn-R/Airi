@@ -46,7 +46,17 @@ module.exports =
         {
             mpcount = 8; 
             eqimage = 'https://i.imgur.com/5UQAw5e.png';   
-        }      
+        }  
+        else if(mpaName.includes('white') || mpaName.includes('wd'))
+        {
+            mpcount = 12; 
+            eqimage = 'https://i.imgur.com/cQz2N83.png';   
+        }   
+        else if(mpaName.includes('choco'))
+        {
+            mpcount = 12; 
+            eqimage = 'https://i.imgur.com/UZ1qyrW.png';   
+        }           
         else if(mpaName.includes('trigger') || mpaName.includes('tg'))
         {
             mpcount = 4; 
