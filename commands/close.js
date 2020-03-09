@@ -16,8 +16,8 @@ module.exports =
 
         if(isNaN(args[0])) return message.channel.send("Please write the MPA number!");
         
-        // if(message.member.roles.has('444176946780438548'))
-        // {
+        if(message.member.roles.has('444176946780438548'))
+        {
             let length = args.length;
             for(let i = 0; i<length; i++)
             {               
@@ -34,9 +34,9 @@ module.exports =
                     }
                 });
             }
-        // }
-        // else
-        //     message.channel.send("You do not have permission to use that command!");       
+        }
+        else
+            message.channel.send("You do not have permission to use that command!");       
     }                    
 };
 
