@@ -15,10 +15,17 @@ module.exports =
     description: 'Joins a voice channel',
     execute(message)
     {   
-  //  async execute(message) {
-        let vc = message.guild.channels.find(ch => ch.name.toLowerCase() === 'FredBot Music Room' && ch.type === 'voice')
+//  async execute(message) {
+        // let vc = message.guild.channels.find(ch => ch.name.toLowerCase() === 'FredBot Music Room' && ch.type === 'voice')
         //if(vc && !vc.connection) {
-            vc.join();
+            // vc.join();
         //}
+
+        let vc = message.guild.channels.find(ch => ch.name.toLowerCase() === 'FredBot Music Room' && ch.type === 'voice')
+        vc.join().then(connection => {
+            console.log("Successfully connected.");
+          }).catch(e => {
+            console.error(e);
+          });
     }
 }
