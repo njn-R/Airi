@@ -3,9 +3,9 @@ const commando = require('discord.js-commando')
 module.exports = class JoinVoiceChannelCommand extends commando.Command{
     constructor(client){
         super(client, {
-            name: 'join',
+            name: 'joinVC',
             group: 'music',
-            memberName: 'join',
+            memberName: 'joinVC',
             description: 'Joins a voice channel'
         })
     }
