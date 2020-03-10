@@ -8,7 +8,7 @@ module.exports = {
     try {
       const args = message.content.split(" ");
       const queue = message.client.queue;
-      const serverQueue = message.client.queue.get(message.guild.id);
+      const serverQueue = message.guild.id;
 
       const voiceChannel = message.member.voiceChannel;
       if (!voiceChannel)
