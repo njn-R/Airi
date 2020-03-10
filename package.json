@@ -10,7 +10,9 @@
     "tenorjs": "^1.0.7",
     "discord.js-commando": "^0.10.0",
     "ytdl-core": "^2.0.0",
-    "node-opus": "^0.3.3"
+    "node-opus": "^0.3.3",
+    "fluent-ffmpeg": "^2.1.2",
+    "opusscript": "0.0.7"
 
   },
   "devDependencies": {},
