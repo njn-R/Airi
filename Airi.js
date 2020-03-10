@@ -21,7 +21,7 @@ bot.once('ready', () =>
 bot.on('message', async message => 
 {
 	//AI Chat	
-	if ((message.channel.id == "591605442661318667" || message.channel.id =="649639369061171200" || message.channel.id == "580654853454561290") && !message.author.bot) 
+	if ((message.channel.id == "685384802387755046" || message.channel.id == "580654853454561290") && !message.author.bot) 
 	{	
 		if (!message.content.startsWith(process.env.prefix))
 		{	
@@ -49,9 +49,13 @@ bot.on('message', async message =>
 	const args = message.content.slice(process.env.prefix.length).split(/ +/);	
 	var command = args.shift().toLowerCase();
 	
-	if(message.channel.id == "685384802387755046" || message.channel.id == "580654853454561290")
+	if(message.channel.id == "444175234652831745" && command === "joinVC")
 	{
-		if (!bot.commands.has(command)) return;
+		bot.commands.get(command).execute(message, args);
+	}
+	if(message.channel.id == "685384802387755046" || message.channel.id == "444172461362380801" || message.channel.id == "580654853454561290")
+	{
+		if (!bot.commands.has(command) || command === "joinVC") return;
 		bot.commands.get(command).execute(message, args);			
 	}
 	else if(command === "feed")
@@ -82,6 +86,7 @@ bot.on('message', async message =>
 	}	
 		
 });
+
 
 
 // var messageID;
