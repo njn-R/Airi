@@ -7,7 +7,11 @@
     "apiai": "^4.0.3",
     "discord.js": "^11.5.1",
     "mongoose": "^5.7.12",
-    "tenorjs": "^1.0.7"
+    "tenorjs": "^1.0.7",
+    "discord.js-commando": "^0.10.0",
+    "ytdl-core": "^2.0.0",
+    "node-opus": "^0.3.3"
+
   },
   "devDependencies": {},
   "scripts": {
