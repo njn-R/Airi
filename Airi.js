@@ -49,16 +49,9 @@ bot.on('message', async message =>
 	const args = message.content.slice(process.env.prefix.length).split(/ +/);	
 	var command = args.shift().toLowerCase();
 	
-	if(message.channel.id == "444175234652831745" || message.channel.id == "685384802387755046")
-	{	
-		if(command === "joinVC")
-		{
-			bot.commands.get(command).execute(message, args);
-		}
-	}
 	if(message.channel.id == "685384802387755046" || message.channel.id == "444172461362380801" || message.channel.id == "580654853454561290")
 	{
-		if (!bot.commands.has(command) || command === "joinVC") return;
+		if (!bot.commands.has(command)) return;
 		bot.commands.get(command).execute(message, args);			
 	}
 	else if(command === "feed")
