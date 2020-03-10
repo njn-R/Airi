@@ -9,7 +9,7 @@ module.exports = class JoinVoiceChannelCommand extends commando.Command{
             description: 'Joins a voice channel'
         })
     }
-    execute(message) {
+    async execute(message) {
         let vc = message.guild.channels.find(ch => ch.name.toLowerCase() === 'FredBot Music Room' && ch.type === 'voice')
         if(vc && !vc.connection) {
             await vc.join();
