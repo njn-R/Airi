@@ -28,12 +28,7 @@ module.exports = {
             }
             
             
-            if(!args[1])
-            {
-              message.channel.send("Gib Link!");
-              return;
-            }
-            
+           
             if(!message.member.voice.channel)
             {
               message.channel.send("Join a voice channel first!");
@@ -47,7 +42,7 @@ module.exports = {
             
             var server = servers[message.guild.id];
             
-            server.queue.push(args[1]);
+            server.queue.push(args[0]);
             
             //if(!client.voice.connections) 
             message.member.voice.channel.join().then(function(connection){
