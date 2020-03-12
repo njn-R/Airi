@@ -10,9 +10,9 @@ module.exports = {
             console.log(args)
             function play(connection, message){
               var server = servers[message.guild.id];
-              server.dispatcher = connection.play(ytdl(server.queue[0], {filter: "audioonly"}))
+              //server.dispatcher = connection.play(ytdl(server.queue[0], {filter: "audioonly"}))
             
-              //server.dispatcher = connection.play(server.queue[0])
+              server.dispatcher = connection.play(server.queue[0])
             
               server.queue.shift();
             
