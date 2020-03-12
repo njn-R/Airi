@@ -5,9 +5,9 @@ var servers = {};
 module.exports = {
 	name: 'play',
 	description: 'Play a song!',
-  execute(message) 
+  execute(message, args) 
   {
-    let args = message.content.substring(prefix.length).split(" ");
+    
             function play(connection, message){
               var server = servers[message.guild.id];
               server.dispatcher = connection.play(ytdl(server.queue[0], {filter: "audioonly"}))
