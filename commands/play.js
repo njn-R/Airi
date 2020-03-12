@@ -7,7 +7,6 @@ module.exports = {
 	description: 'Play a song!',
   execute(message, args) 
   {
-            console.log(args)
             function play(connection, message){
               var server = servers[message.guild.id];
               //server.dispatcher = connection.play(ytdl(server.queue[0], {filter: "audioonly"}))
@@ -26,9 +25,7 @@ module.exports = {
             
               })
             }
-            
-            
-           
+                
             if(!message.member.voice.channel)
             {
               message.channel.send("Join a voice channel first!");
