@@ -16,7 +16,7 @@ module.exports =
 
         if(isNaN(args[0])) return message.channel.send("Please write the MPA number!");
         
-        if(message.guildMember.roles.has('444176946780438548') || message.member.id === "480464745921642497")
+        if(message.member.has('444176946780438548') || message.member.id === "480464745921642497")
         {
             let length = args.length;
             for(let i = 0; i<length; i++)
