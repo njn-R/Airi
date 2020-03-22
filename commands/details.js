@@ -84,7 +84,7 @@ module.exports =
         }
         else
         {
-            const mpaEmbed = new Discord.RichEmbed()              
+            const mpaEmbed = new Discord.MessageEmbed()              
             .setTitle(EQname)
             .setAuthor("MPA Number: "+Collection.mpanumber, 'https://i.imgur.com/HF4CEeN.png')
             .setColor('#0099ff')
