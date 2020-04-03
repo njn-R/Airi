@@ -63,7 +63,7 @@ bot.on('message', async message =>
 	}
 	else 
 	{	
-		if(message.guild.id == "667073733445287966" || message.guild.id == "597857533734027274" ) return;
+		if(message.guild.id == "597857533734027274" ) return;
 		var tags = "anime";
 		tags = tags.concat(command);
 	
