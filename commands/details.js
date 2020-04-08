@@ -33,7 +33,7 @@ module.exports =
 
         if (typeof playerArray !== 'undefined' && playerArray.length === 0)
         {
-            const noplayerEmbed = new Discord.RichEmbed()
+            const noplayerEmbed = new Discord.MessageEmbed()
             .setTitle(EQname)
             .setAuthor("MPA Number: "+Collection.mpanumber, 'https://i.imgur.com/HF4CEeN.png')
             .setColor('#0099ff')
@@ -49,7 +49,7 @@ module.exports =
             playerArray1 = playerArray.slice(0,4);
             playerArray2 = playerArray.slice(4,8);
 
-            const mpaEmbed = new Discord.RichEmbed()              
+            const mpaEmbed = new Discord.MessageEmbed()              
             .setTitle(EQname)
             .setAuthor("MPA Number: "+Collection.mpanumber, 'https://i.imgur.com/HF4CEeN.png')
             .setColor('#0099ff')     
@@ -68,7 +68,7 @@ module.exports =
             playerArray2 = playerArray.slice(4,8);
             playerArray3 = playerArray.slice(8,11);
 
-            const mpaEmbed = new Discord.RichEmbed()              
+            const mpaEmbed = new Discord.MessageEmbed()              
             .setTitle(EQname)
             .setAuthor("MPA Number: "+Collection.mpanumber, 'https://i.imgur.com/HF4CEeN.png')
             .setColor('#0099ff')      
