@@ -66,7 +66,7 @@ bot.on('message', async message =>
 		if(message.guild.id == "597857533734027274" ) return;
 
 		var letters = /^[A-Za-z]+$/;
-	  	if(command.value.match(letters))
+	  	if(command.match(letters))
 	  	{
 			var tags = "anime";
 			tags = tags.concat(command);
