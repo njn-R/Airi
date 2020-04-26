@@ -66,7 +66,7 @@ module.exports =
         {
             playerArray1 = playerArray.slice(0,4);
             playerArray2 = playerArray.slice(4,8);
-            playerArray3 = playerArray.slice(8,11);
+            playerArray3 = playerArray.slice(8,12);
 
             const mpaEmbed = new Discord.MessageEmbed()              
             .setTitle(EQname)
