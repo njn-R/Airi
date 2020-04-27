@@ -42,40 +42,30 @@ module.exports =
 
             function checkPlayer(players, usertoadd, playercount, maxplayercount)
             {
-                    //for(let i = 0; i<usertoadd.length; i++)
-                    //{  
-                        if(usertoadd.length === 1)
-                        {                      
-                            if(players.includes(usertoadd))
-                            {
-                                //if(usertoadd.length === 1)             
-                                    return message.channel.send("Player already in MPA!");                
-                                //else                  
-                                    //return message.channel.send("One or more of those players already in MPA!");                          
-                            }                    
-                            else
-                                addPlayer(playercount, maxplayercount);
-                        }
-                        else
+                if(usertoadd.length === 1)
+                {                      
+                    if(players.includes(usertoadd))
+                    {            
+                        return message.channel.send("Player already in MPA!");                                                          
+                    }                    
+                    else
+                        addPlayer(playercount, maxplayercount);
+                }
+                else
+                {                  
+                    for(let i =0; i<players.length; i++)
+                    {   
+                        for(let j=0; j<usertoadd.length; j++)
                         {
-                            
-                            for(let i =0; i<players.length; i++)
-                            {   
-                                for(let j=0; j<usertoadd.length; j++)
-                                {
-                                    if(players[i] === usertoadd[j])
-                                    {
-                                        //setFlag(0);
-                                        return message.channel.send("One or more of those players already in MPA!");      
-                                    }
-                                }
+                            if(players[i] === usertoadd[j])
+                            {
+                                return message.channel.send("One or more of those players already in MPA!");      
                             }
-                            //if(checkFlag() === 0)
-                           // {
-                               addPlayer(playercount, maxplayercount);
-                           // }
                         }
-                   // }                        
+                    }
+                    addPlayer(playercount, maxplayercount);               
+                }
+                                          
             }
 
             function addPlayer(playercount, maxplayercount)
@@ -95,14 +85,6 @@ module.exports =
                 details.execute(message,args);
             }
 
-            //function setFlag(num)
-           // {
-              //  flag = num;
-           //// }
-           // function checkFlag()
-           // {
-//return flag;
-          //  }
     }                           
 };
 
