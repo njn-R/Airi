@@ -101,7 +101,7 @@ module.exports =
             }
             function checkFlag()
             {
-                return(flag);
+                return flag;
             }
     }                           
 };
