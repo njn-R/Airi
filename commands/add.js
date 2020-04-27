@@ -72,7 +72,7 @@ module.exports =
                             }
                             //if(checkFlag() === 0)
                            // {
-                              //  addPlayer(playercount, maxplayercount);
+                               addPlayer(playercount, maxplayercount);
                            // }
                         }
                    // }                        
