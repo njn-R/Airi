@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Collection = require("../models/model.js");
 var details = require("./details.js")
-
+let flag =0;
 module.exports =
 {
     name: 'add',
@@ -13,7 +13,6 @@ module.exports =
             useUnifiedTopology: true               
         }); 
         mongoose.set('useCreateIndex', true);
-
 
             if(isNaN(args[0])) 
                 return message.channel.send("Please write the MPA number!");
@@ -44,16 +43,38 @@ module.exports =
             function checkPlayer(players, usertoadd, playercount, maxplayercount)
             {
                     //for(let i = 0; i<usertoadd.length; i++)
-                    //{                        
-                        if(players.includes(usertoadd))
-                        {
-                            if(usertoadd.length === 1)             
-                                return message.channel.send("Player already in MPA!");                
-                            else                  
-                                return message.channel.send("One or more of those players already in MPA!");                          
-                        }                    
+                    //{  
+                        if(usertoadd.length === 1)
+                        {                      
+                            if(players.includes(usertoadd))
+                            {
+                                //if(usertoadd.length === 1)             
+                                    return message.channel.send("Player already in MPA!");                
+                                //else                  
+                                    //return message.channel.send("One or more of those players already in MPA!");                          
+                            }                    
+                            else
+                                addPlayer(playercount, maxplayercount);
+                        }
                         else
-                            addPlayer(playercount, maxplayercount);
+                        {
+                            
+                            for(let i =0; i<player.length; i++)
+                            {   
+                                for(let j=0; j<usertoadd.length; j++)
+                                {
+                                    if(player[i] === usertoadd[j])
+                                    {
+                                        setFlag();
+                                        return message.channel.send("One or more of those players already in MPA!");      
+                                    }
+                                }
+                            }
+                            if(checkFlag() === 0)
+                            {
+                                addPlayer(playercount, maxplayercount);
+                            }
+                        }
                    // }                        
             }
 
@@ -72,6 +93,15 @@ module.exports =
                     });                      
                 }               
                 details.execute(message,args);
+            }
+
+            function setFlag()
+            {
+                flag = 1;
+            }
+            function checkFlag()
+            {
+                return(flag);
             }
     }                           
 };
