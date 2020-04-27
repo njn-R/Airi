@@ -57,6 +57,11 @@ module.exports =
             mpcount = 12; 
             eqimage = 'https://i.imgur.com/UZ1qyrW.png';   
         }           
+        else if(mpaName.toLowerCase().includes('mining') || mpaName.toLowerCase().includes('base') || mpaName.toLowerCase().includes('defense') || mpaName.toLowerCase().includes('VR'))
+        {
+            mpcount = 12; 
+            eqimage = 'https://i.imgur.com/GiCHdsl.png';   
+        }           
         else if(mpaName.toLowerCase().includes('trigger') || mpaName.toLowerCase().includes('tg'))
         {
             mpcount = 4; 
