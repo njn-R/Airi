@@ -70,6 +70,7 @@ module.exports =
                                     }
                                 }
                             }
+                            message.channel.send(checkFlag())
                             if(checkFlag() === 0)
                             {
                                 addPlayer(playercount, maxplayercount);
