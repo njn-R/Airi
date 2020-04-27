@@ -24,7 +24,7 @@ module.exports =
                 let temp2 = message.guild.member(users);
                 usertoadd.push(temp2.displayName);
             }); 
-            message.channel.send(usertoadd);
+            
             if (typeof usertoadd !== 'undefined' && usertoadd.length === 0)
                 return message.channel.send("No users mentioned!");
             
@@ -43,8 +43,8 @@ module.exports =
 
             function checkPlayer(players, usertoadd, playercount, maxplayercount)
             {
-                    for(let i = 0; i<usertoadd.length; i++)
-                    {                        
+                    //for(let i = 0; i<usertoadd.length; i++)
+                    //{                        
                         if(players.includes(usertoadd[i]))
                         {
                             if(usertoadd.length === 1)             
@@ -54,7 +54,7 @@ module.exports =
                         }                    
                         else
                             addPlayer(playercount, maxplayercount);
-                    }                        
+                   // }                        
             }
 
             function addPlayer(playercount, maxplayercount)
