@@ -45,7 +45,7 @@ module.exports =
             {
                     //for(let i = 0; i<usertoadd.length; i++)
                     //{                        
-                        if(players.includes(usertoadd[i]))
+                        if(players.includes(usertoadd))
                         {
                             if(usertoadd.length === 1)             
                                 return message.channel.send("Player already in MPA!");                
