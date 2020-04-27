@@ -63,7 +63,7 @@ module.exports =
                             {   
                                 for(let j=0; j<usertoadd.length; j++)
                                 {
-                                    if(player[i] === usertoadd[j])
+                                    if(players[i] === usertoadd[j])
                                     {
                                         setFlag();
                                         return message.channel.send("One or more of those players already in MPA!");      
