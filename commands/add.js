@@ -65,16 +65,15 @@ module.exports =
                                 {
                                     if(players[i] === usertoadd[j])
                                     {
-                                        setFlag();
+                                        //setFlag(0);
                                         return message.channel.send("One or more of those players already in MPA!");      
                                     }
                                 }
                             }
-                            message.channel.send(checkFlag())
-                            if(checkFlag() === 0)
-                            {
-                                addPlayer(playercount, maxplayercount);
-                            }
+                            //if(checkFlag() === 0)
+                           // {
+                              //  addPlayer(playercount, maxplayercount);
+                           // }
                         }
                    // }                        
             }
@@ -96,14 +95,14 @@ module.exports =
                 details.execute(message,args);
             }
 
-            function setFlag()
-            {
-                flag = 1;
-            }
-            function checkFlag()
-            {
-                return flag;
-            }
+            //function setFlag(num)
+           // {
+              //  flag = num;
+           //// }
+           // function checkFlag()
+           // {
+//return flag;
+          //  }
     }                           
 };
 
