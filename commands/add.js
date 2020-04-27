@@ -59,7 +59,7 @@ module.exports =
                         else
                         {
                             
-                            for(let i =0; i<player.length; i++)
+                            for(let i =0; i<players.length; i++)
                             {   
                                 for(let j=0; j<usertoadd.length; j++)
                                 {
