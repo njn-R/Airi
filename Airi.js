@@ -1,7 +1,7 @@
 var apiaiApp = require('apiai')("f5f50d38b1974c54be0a71328d8920e4");
 const fs = require('fs');
 const Discord = require('discord.js');
-var rowLength = 6;
+var rowLength = 5;
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
