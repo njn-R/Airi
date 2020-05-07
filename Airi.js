@@ -111,6 +111,7 @@ function leftToEight()
 
 function sendMessage()
 {
+	console.log("check 1")
   const { google } = require('googleapis');
   const sheetsApi = google.sheets({version: 'v4'});
   const googleAuth = require('./auth');
@@ -138,7 +139,7 @@ function sendMessage()
                     {
                         guild.channels.cache.get('686475381800566794').send("New Member Application!")
                         guild.channels.cache.get('686475381800566794').send("http://tiny.cc/applyResponse")            
-                        
+                        console.log("check 2")
                         guild.channels.cache.get('686475381800566794').send("Timestamp: " + rows[rowLength][0])
                         guild.channels.cache.get('686475381800566794').send("Player ID Name: " + rows[rowLength][1])
               
