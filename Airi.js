@@ -21,6 +21,7 @@ bot.once('ready', () =>
 	//Check for new team applications
 	setTimeout(function()
     { 
+		console.log("check 0")
       sendMessage(); 
       var dayMillseconds = 1000 * 60 * 60;
       setInterval(function()
@@ -106,7 +107,7 @@ bot.on('message', async message =>
 function leftToEight()
 {
     var d = new Date();
-    return (-d + d.setHours(18,0,0,0));
+    return (-d + d.setHours(20,0,0,0));
 }
 
 function sendMessage()
