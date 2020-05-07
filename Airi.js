@@ -1,6 +1,7 @@
 var apiaiApp = require('apiai')("f5f50d38b1974c54be0a71328d8920e4");
 const fs = require('fs');
 const Discord = require('discord.js');
+var rowLength = 6;
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
@@ -16,6 +17,19 @@ bot.once('ready', () =>
 {
 	console.log(bot.user.username + " is online!");
 	bot.user.setActivity("Phantasy Star Online 2", {type: "PLAYING"});
+
+	//Check for new team applications
+	setTimeout(function()
+    { 
+      sendMessage(); 
+      var dayMillseconds = 1000 * 60 * 60;
+      setInterval(function()
+      { 
+          sendMessage();
+      }, 
+      dayMillseconds)
+	}, leftToEight())
+	
 });
 
 bot.on('message', async message => 
@@ -79,7 +93,6 @@ bot.on('message', async message =>
 				"DateFormat": "D/MM/YYYY - H:mm:ss A" // Change this accordingly
 			});
 			Tenor.Search.Random(tags, "1").then(Results => {
-			//Tenor.Search.Query(tags, "1").then(Results => {
 				Results.forEach(Post => {
 						message.channel.send(Post.url);
 				});
@@ -90,7 +103,57 @@ bot.on('message', async message =>
 });
 
 
+function leftToEight()
+{
+    var d = new Date();
+    return (-d + d.setHours(18,0,0,0));
+}
 
+function sendMessage()
+{
+  const { google } = require('googleapis');
+  const sheetsApi = google.sheets({version: 'v4'});
+  const googleAuth = require('./auth');
+  
+  const SPREADSHEET_ID = '12R7LeVmuc2B8ZzSmjxl_c7jt0fD-GOghgk92cadS9qo';
+  
+  googleAuth.authorize()
+      .then((auth) => {
+          sheetsApi.spreadsheets.values.get({
+              auth: auth,
+              spreadsheetId: SPREADSHEET_ID,
+              range: "Form Responses 1!A2:B",
+          }, function (err, response) 
+             {
+                if (err) 
+                {
+                  console.log('The API returned an error: ' + err);
+                  return console.log(err);
+                }
+                const rows = response.data.values;
+                if (rows.length>rowLength) 
+                {
+                    var guild = client.guilds.cache.get('444170493155606535');
+                    if(guild && guild.channels.cache.get('468327502335705088'))
+                    {
+                        guild.channels.cache.get('468327502335705088').send("New Member Application!")
+                        guild.channels.cache.get('468327502335705088').send("http://tiny.cc/applyResponse")            
+                        
+                        guild.channels.cache.get('468327502335705088').send("Timestamp: " + rows[rowLength][0])
+                        guild.channels.cache.get('468327502335705088').send("Player ID Name: " + rows[rowLength][1])
+              
+                    }
+      
+                rowLength++;
+               } 
+          });
+      })
+      .catch((err) => {
+          console.log('auth error', err);
+      });
+ 
+
+}
 // var messageID;
 
 // bot.on('raw', event =>
@@ -157,6 +220,6 @@ bot.on('message', async message =>
 //bot.on('messageReactionAdd', (messageReaction, user) => {
 	//console.log(user.username + " reacted");
 //});
-	
+
 bot.login(process.env.token);
 
