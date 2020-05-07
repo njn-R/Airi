@@ -106,8 +106,9 @@ bot.on('message', async message =>
 
 function leftToEight()
 {
+	console.log("check 0.5")
     var d = new Date();
-    return (-d + d.setHours(20,0,0,0));
+    return (-d + d.setHours(2,0,0,0));
 }
 
 function sendMessage()
