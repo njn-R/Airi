@@ -21,7 +21,6 @@ bot.once('ready', () =>
 	//Check for new team applications
 	setTimeout(function()
     { 
-		console.log("check 0")
       sendMessage(); 
       var dayMillseconds = 1000 * 60 * 60;
       setInterval(function()
@@ -106,14 +105,12 @@ bot.on('message', async message =>
 
 function leftToEight()
 {
-	console.log("check 0.5")
     var d = new Date();
     return (-d + d.setHours(2,0,0,0));
 }
 
 function sendMessage()
 {
-	console.log("check 1")
   const { google } = require('googleapis');
   const sheetsApi = google.sheets({version: 'v4'});
   const googleAuth = require('./auth');
@@ -136,14 +133,14 @@ function sendMessage()
                 const rows = response.data.values;
                 if (rows.length>rowLength) 
                 {
-                    var guild = bot.guilds.cache.get('667073733445287966');
-                    if(guild && guild.channels.cache.get('686475381800566794'))
+                    var guild = bot.guilds.cache.get('444170493155606535');
+                    if(guild && guild.channels.cache.get('468327502335705088'))
                     {
-                        guild.channels.cache.get('686475381800566794').send("New Member Application!")
-                        guild.channels.cache.get('686475381800566794').send("http://tiny.cc/applyResponse")            
-                        console.log("check 2")
-                        guild.channels.cache.get('686475381800566794').send("Timestamp: " + rows[rowLength][0])
-                        guild.channels.cache.get('686475381800566794').send("Player ID Name: " + rows[rowLength][1])
+                        guild.channels.cache.get('468327502335705088').send("New Member Application!")
+                        guild.channels.cache.get('468327502335705088').send("http://tiny.cc/applyResponse")            
+
+                        guild.channels.cache.get('468327502335705088').send("Timestamp: " + rows[rowLength][0])
+                        guild.channels.cache.get('468327502335705088').send("Player ID Name: " + rows[rowLength][1])
               
                     }
       
