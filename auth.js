@@ -4,7 +4,8 @@ module.exports =
 }
 
 const { google } = require('googleapis')
-const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
+//const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 function authorize() 
 {
     return new Promise(resolve => {
