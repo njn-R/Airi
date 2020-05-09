@@ -101,7 +101,7 @@ function sendMessage()
           sheetsApi.spreadsheets.values.get({
               auth: auth,
               spreadsheetId: SPREADSHEET_ID,
-              range: "Form Responses 1!A2:B",
+              range: "Form Responses 1!A2:Q",
           }, function (err, response) 
              {
                 if (err) 
