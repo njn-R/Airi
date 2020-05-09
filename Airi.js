@@ -1,7 +1,6 @@
 var apiaiApp = require('apiai')("f5f50d38b1974c54be0a71328d8920e4");
 const fs = require('fs');
 const Discord = require('discord.js');
-var rowLength = 5;
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
@@ -18,17 +17,8 @@ bot.once('ready', () =>
 	console.log(bot.user.username + " is online!");
 	bot.user.setActivity("Phantasy Star Online 2", {type: "PLAYING"});
 
-	//Check for new team applications
-	//setTimeout(function()
-    //{ 
-      sendMessage(); 
-      var Timer = 1000 * 60;
-      setInterval(function()
-      { 
-          sendMessage();
-      }, 
-      Timer)
-	//}, leftToEight())
+    var Timer = 1000 * 60;
+    setInterval(function(){ sendMessage();}, Timer)	
 	
 });
 
@@ -58,8 +48,7 @@ bot.on('message', async message =>
 		}	
 	}
 	
-	if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
-	
+	if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;	
 	const args = message.content.slice(process.env.prefix.length).split(/ +/);	
 	var command = args.shift().toLowerCase();
 	
@@ -70,27 +59,23 @@ bot.on('message', async message =>
 	}
 	else if(command === "feed")
 		bot.commands.get(command).execute(message, args);	
-	else if(command === "fetch")
-	{
-		if(args[0] === "rock" || args[0] === "rocket" || args[0] === "boss" || args[0] === "verda" || args[o] === "rabbit")
-			message.channel.send("https://i.imgur.com/RjBYCmL.gifv");
-	}
+	
+	
+	//Gif funtion
 	else 
 	{	
 		if(message.guild.id == "597857533734027274" ) return;
-
 		var letters = /^[A-Za-z]+$/;
 	  	if(command.match(letters))
 	  	{
 			var tags = "anime";
 			tags = tags.concat(command);
-		
 			const Tenor = require("tenorjs").client({
-				"Key": "IBEW4A0KACM3", // https://tenor.com/developer/keyregistration
+				"Key": "IBEW4A0KACM3", 
 				"Filter": "off", // "off", "low", "medium", "high", not case sensitive
-				"Locale": "en_US", // Your locale here, case-sensitivity depends on input
+				"Locale": "en_US", 
 				"MediaFilter": "minimal", // either minimal or basic, not case sensitive
-				"DateFormat": "D/MM/YYYY - H:mm:ss A" // Change this accordingly
+				"DateFormat": "D/MM/YYYY - H:mm:ss A" 
 			});
 			Tenor.Search.Random(tags, "1").then(Results => {
 				Results.forEach(Post => {
@@ -103,21 +88,15 @@ bot.on('message', async message =>
 });
 
 
-// function leftToEight()
-// {
-//     var d = new Date();
-//     return (-d + d.setHours(2,0,0,0));
-// }
-
 function sendMessage()
 {
-  const { google } = require('googleapis');
-  const sheetsApi = google.sheets({version: 'v4'});
-  const googleAuth = require('./auth');
+  	const { google } = require('googleapis');
+  	const sheetsApi = google.sheets({version: 'v4'});
+  	const googleAuth = require('./auth');
+
+  	const SPREADSHEET_ID = '12R7LeVmuc2B8ZzSmjxl_c7jt0fD-GOghgk92cadS9qo';
   
-  const SPREADSHEET_ID = '12R7LeVmuc2B8ZzSmjxl_c7jt0fD-GOghgk92cadS9qo';
-  
-  googleAuth.authorize()
+  	googleAuth.authorize()
       .then((auth) => {
           sheetsApi.spreadsheets.values.get({
               auth: auth,
@@ -130,104 +109,40 @@ function sendMessage()
                   console.log('The API returned an error: ' + err);
                   return console.log(err);
                 }
-                const rows = response.data.values;
-                if (rows.length>rowLength) 
-                {
-                    var guild = bot.guilds.cache.get('667073733445287966');
-                    if(guild && guild.channels.cache.get('686475381800566794'))
-                    {
-                        guild.channels.cache.get('686475381800566794').send("New Member Application!")
-                        guild.channels.cache.get('686475381800566794').send("http://tiny.cc/applyResponse")            
+				const rows = response.data.values;
+				console.log("Row length: "+rows.length)
+				console.log("Cell: "+(rows[2][16]-1))
+            //     if (rows.length>(rows[2][16]-1)) 
+            //     {
+            //         var guild = bot.guilds.cache.get('667073733445287966');
+            //         if(guild && guild.channels.cache.get('686475381800566794'))
+            //         {
+            //             guild.channels.cache.get('686475381800566794').send("New Member Application!")
+            //             guild.channels.cache.get('686475381800566794').send("http://tiny.cc/applyResponse")            
 
-                        guild.channels.cache.get('686475381800566794').send("Timestamp: " + rows[rowLength][0])
-                        guild.channels.cache.get('686475381800566794').send("Player ID Name: " + rows[rowLength][1])
+            //             guild.channels.cache.get('686475381800566794').send("Timestamp: " + rows[rowLength][0])
+            //             guild.channels.cache.get('686475381800566794').send("Player ID Name: " + rows[rowLength][1])
               
-                    }
+            //         }
       
-                rowLength++;
-			   }
-			   else
-			   {
-					var guild = bot.guilds.cache.get('667073733445287966');
-					if(guild && guild.channels.cache.get('686475381800566794'))
-					{
-						guild.channels.cache.get('686475381800566794').send("No New Application!")	  
-					}
-			   }
+            //     rowLength++;
+			//    }
+			//    else
+			//    {
+			// 		var guild = bot.guilds.cache.get('667073733445287966');
+			// 		if(guild && guild.channels.cache.get('686475381800566794'))
+			// 		{
+			// 			guild.channels.cache.get('686475381800566794').send("No New Application!")	  
+			// 		}
+			//    }
           });
       })
       .catch((err) => {
           console.log('auth error', err);
-      });
+    });
  
 
 }
-// var messageID;
-
-// bot.on('raw', event =>
-// {
-// 	//console.log(event);
-// 	const eventName = event.t;
-// 	if(eventName === 'MESSAGE_CREATE')
-// 	{
-// 		if(event.d.author.id === '580638610571657216')
-// 		{	
-// 			messageID = event.d.id;			
-// 		}
-// 	}
-// 	if(eventName === 'MESSAGE_REACTION_ADD')
-// 	{
-// 		if(event.d.message_id === messageID)
-// 		{
-// 			var reactionChannel = event.d.channel_id;
-// 			var emojiID = event.d.emoji.id;
-// 			try
-// 			{
-// 				if((reactionChannel === "591605442661318667") && (emojiID === "571963380143751169")) 
-// 				{				
-// 					var user = bot.users.get(event.d.user_id);
-// 					//console.log(user.username)
-// 					command = "add";
-// 					bot.commands.get(command).execute(user);		
-// 				}
-// 			}
-// 			catch (error) 
-// 			{
-// 				console.error(error);
-// 				message.reply('There was an error trying to execute that command!');
-// 			}
-// 		}
-		
-// 	}
-// 	if(eventName === 'MESSAGE_REACTION_REMOVE')
-// 	{
-// 		if(event.d.message_id === messageID)
-// 		{
-// 			var reactionChannel = event.d.channel_id;
-// 			var emojiID = event.d.emoji.id;
-// 			try
-// 			{
-// 				if((reactionChannel === "589023788432228362") && (emojiID === "571963380143751169")) 
-// 				{
-// 					var user = bot.users.get(event.d.user_id);
-// 					//console.log(user.username)
-// 					command = "remove";
-// 					bot.commands.get(command).execute(user);
-// 				}
-// 			}
-// 			catch (error)
-// 			{
-// 				console.error(error);
-// 				message.reply('There was an error trying to execute that command!');
-// 			}
-// 		}
-		
-// 	}
-// });
-
-//bot.on('messageReactionAdd', (messageReaction, user) => {
-	//console.log(user.username + " reacted");
-//});
 
 bot.login(process.env.token);
 
