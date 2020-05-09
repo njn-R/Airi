@@ -19,16 +19,16 @@ bot.once('ready', () =>
 	bot.user.setActivity("Phantasy Star Online 2", {type: "PLAYING"});
 
 	//Check for new team applications
-	setTimeout(function()
-    { 
+	//setTimeout(function()
+    //{ 
       sendMessage(); 
-      var dayMillseconds = 1000 * 60 * 60;
+      var Timer = 1000 * 60;
       setInterval(function()
       { 
           sendMessage();
       }, 
-      dayMillseconds)
-	}, leftToEight())
+      Timer)
+	//}, leftToEight())
 	
 });
 
@@ -103,11 +103,11 @@ bot.on('message', async message =>
 });
 
 
-function leftToEight()
-{
-    var d = new Date();
-    return (-d + d.setHours(2,0,0,0));
-}
+// function leftToEight()
+// {
+//     var d = new Date();
+//     return (-d + d.setHours(2,0,0,0));
+// }
 
 function sendMessage()
 {
@@ -133,19 +133,27 @@ function sendMessage()
                 const rows = response.data.values;
                 if (rows.length>rowLength) 
                 {
-                    var guild = bot.guilds.cache.get('444170493155606535');
-                    if(guild && guild.channels.cache.get('468327502335705088'))
+                    var guild = bot.guilds.cache.get('667073733445287966');
+                    if(guild && guild.channels.cache.get('686475381800566794'))
                     {
-                        guild.channels.cache.get('468327502335705088').send("New Member Application!")
-                        guild.channels.cache.get('468327502335705088').send("http://tiny.cc/applyResponse")            
+                        guild.channels.cache.get('686475381800566794').send("New Member Application!")
+                        guild.channels.cache.get('686475381800566794').send("http://tiny.cc/applyResponse")            
 
-                        guild.channels.cache.get('468327502335705088').send("Timestamp: " + rows[rowLength][0])
-                        guild.channels.cache.get('468327502335705088').send("Player ID Name: " + rows[rowLength][1])
+                        guild.channels.cache.get('686475381800566794').send("Timestamp: " + rows[rowLength][0])
+                        guild.channels.cache.get('686475381800566794').send("Player ID Name: " + rows[rowLength][1])
               
                     }
       
                 rowLength++;
-               } 
+			   }
+			   else
+			   {
+					var guild = bot.guilds.cache.get('667073733445287966');
+					if(guild && guild.channels.cache.get('686475381800566794'))
+					{
+						guild.channels.cache.get('686475381800566794').send("No New Application!")	  
+					}
+			   }
           });
       })
       .catch((err) => {
