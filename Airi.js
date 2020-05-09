@@ -110,31 +110,48 @@ function sendMessage()
                   return console.log(err);
                 }
 				const rows = response.data.values;
-				console.log("Row length: "+rows.length)
-				console.log("Cell: "+rows[2][16])
-            //     if (rows.length>rows[3][17]) 
-            //     {
-            //         var guild = bot.guilds.cache.get('667073733445287966');
-            //         if(guild && guild.channels.cache.get('686475381800566794'))
-            //         {
-            //             guild.channels.cache.get('686475381800566794').send("New Member Application!")
-            //             guild.channels.cache.get('686475381800566794').send("http://tiny.cc/applyResponse")            
+                if (rows.length>rows[0][16]) 
+                {
+                    var guild = bot.guilds.cache.get('667073733445287966');
+                    if(guild && guild.channels.cache.get('686475381800566794'))
+                    {
+                        guild.channels.cache.get('686475381800566794').send("New Member Application!")
+                        guild.channels.cache.get('686475381800566794').send("http://tiny.cc/applyResponse")            
 
-            //             guild.channels.cache.get('686475381800566794').send("Timestamp: " + rows[rowLength][0])
-            //             guild.channels.cache.get('686475381800566794').send("Player ID Name: " + rows[rowLength][1])
+                        guild.channels.cache.get('686475381800566794').send("Timestamp: " + rows[rowLength][0])
+                        guild.channels.cache.get('686475381800566794').send("Player ID Name: " + rows[rowLength][1])
               
-            //         }
+                    }
       
-            //     rowLength++;
-			//    }
-			//    else
-			//    {
-			// 		var guild = bot.guilds.cache.get('667073733445287966');
-			// 		if(guild && guild.channels.cache.get('686475381800566794'))
-			// 		{
-			// 			guild.channels.cache.get('686475381800566794').send("No New Application!")	  
-			// 		}
-			//    }
+				
+					
+						sheetsApi.spreadsheets.values.update({
+							auth: auth,
+							spreadsheetId: SPREADSHEET_ID,
+							range: "Form Responses 1!Q2",
+							values: (rows[0][16] + 1)
+						}, function (err, response) 
+						   {
+							  if (err) 
+							  {
+								console.log('The API returned an error: ' + err);
+								return console.log(err);
+							  }
+							 
+						});
+					
+				  
+				   
+
+			   }
+			   else
+			   {
+					var guild = bot.guilds.cache.get('667073733445287966');
+					if(guild && guild.channels.cache.get('686475381800566794'))
+					{
+						guild.channels.cache.get('686475381800566794').send("No New Application!")	  
+					}
+			   }
           });
       })
       .catch((err) => {
