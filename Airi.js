@@ -112,36 +112,51 @@ function sendMessage()
 				const rows = response.data.values;
                 if (rows.length>rows[0][16]) 
                 {
+					let lastRow = rows.length;
                     var guild = bot.guilds.cache.get('667073733445287966');
                     if(guild && guild.channels.cache.get('686475381800566794'))
                     {
                         guild.channels.cache.get('686475381800566794').send("New Member Application!")
                         guild.channels.cache.get('686475381800566794').send("http://tiny.cc/applyResponse")            
 
-                        guild.channels.cache.get('686475381800566794').send("Timestamp: " + rows[rowLength][0])
-                        guild.channels.cache.get('686475381800566794').send("Player ID Name: " + rows[rowLength][1])
+                        guild.channels.cache.get('686475381800566794').send("Timestamp: " + rows[lastRow][0])
+                        guild.channels.cache.get('686475381800566794').send("Player ID Name: " + rows[lastRow][1])
               
                     }
       
 				
+				
+			   
 					
-						sheetsApi.spreadsheets.values.update({
-							auth: auth,
-							spreadsheetId: SPREADSHEET_ID,
-							range: "Form Responses 1!Q2",
-							values: (rows[0][16] + 1)
-						}, function (err, response) 
-						   {
-							  if (err) 
-							  {
-								console.log('The API returned an error: ' + err);
-								return console.log(err);
-							  }
-							 
-						});
+					googleAuth.authorize()
+					.then((auth) => {		
+							sheetsApi.spreadsheets.values.update({
+								auth: auth,
+								spreadsheetId: SPREADSHEET_ID,
+								range: "Form Responses 1!Q2",
+								values: (rows[0][16] + 1)
+							}, function (err, response) 
+								{
+								if (err) 
+								{
+									console.log('The API returned an error: ' + err);
+									return console.log(err);
+								}							
+							});							  
+						
 					
-				  
-				   
+					}).catch((err) => 
+					{
+						console.log('auth error', err);
+				  	});
+				
+					
+
+
+
+
+
+
 
 			   }
 			   else
