@@ -17,8 +17,7 @@ bot.once('ready', () =>
 	console.log(bot.user.username + " is online!");
 	bot.user.setActivity("Phantasy Star Online 2", {type: "PLAYING"});
 
-	sendMessage()
-    var Timer = 1000 * 60 ;
+    var Timer = 1000 * 60 * 60;
     setInterval(function(){ sendMessage();}, Timer)	
 	
 });
@@ -115,8 +114,8 @@ function sendMessage()
                 {
 					let lastRow = rows.length-1;
 	
-                    var guild = bot.guilds.cache.get('667073733445287966');
-                    if(guild && guild.channels.cache.get('686475381800566794'))
+                    var guild = bot.guilds.cache.get('444170493155606535');
+                    if(guild && guild.channels.cache.get('468327502335705088'))
                     {
                         const memberApp = new Discord.MessageEmbed()              
                         .setTitle("New Member Application (Click here)")
@@ -124,7 +123,7 @@ function sendMessage()
                         .setColor('#597E8D')     
                         .addField('Player ID Name: '+ '***' + rows[lastRow][1] + '***' , "\u200b")
             
-                        guild.channels.cache.get('686475381800566794').send(memberApp);
+                        guild.channels.cache.get('468327502335705088').send(memberApp);
               
                     }
       
