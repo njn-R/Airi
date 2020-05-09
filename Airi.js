@@ -113,14 +113,16 @@ function sendMessage()
                 if (rows.length>rows[0][16]) 
                 {
 					let lastRow = rows.length;
+					console.log(rows.length)
+					console.log(lastRow)
                     var guild = bot.guilds.cache.get('667073733445287966');
                     if(guild && guild.channels.cache.get('686475381800566794'))
                     {
                         guild.channels.cache.get('686475381800566794').send("New Member Application!")
                         guild.channels.cache.get('686475381800566794').send("http://tiny.cc/applyResponse")            
 
-                        guild.channels.cache.get('686475381800566794').send("Timestamp: " + rows[lastRow][0])
-                        guild.channels.cache.get('686475381800566794').send("Player ID Name: " + rows[lastRow][1])
+                        //guild.channels.cache.get('686475381800566794').send("Timestamp: " + rows[lastRow][0])
+                        //guild.channels.cache.get('686475381800566794').send("Player ID Name: " + rows[lastRow][1])
               
                     }
       
