@@ -111,7 +111,7 @@ function sendMessage()
                 }
 				const rows = response.data.values;
 				console.log("Row length: "+rows.length)
-				console.log("Cell: "+rows[3][17])
+				console.log("Cell: "+rows[3][16])
             //     if (rows.length>rows[3][17]) 
             //     {
             //         var guild = bot.guilds.cache.get('667073733445287966');
