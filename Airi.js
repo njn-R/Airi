@@ -17,7 +17,8 @@ bot.once('ready', () =>
 	console.log(bot.user.username + " is online!");
 	bot.user.setActivity("Phantasy Star Online 2", {type: "PLAYING"});
 
-    var Timer = 1000 * 60;
+	sendMessage()
+    var Timer = 1000 * 60 ;
     setInterval(function(){ sendMessage();}, Timer)	
 	
 });
@@ -113,30 +114,37 @@ function sendMessage()
                 if (rows.length>rows[0][16]) 
                 {
 					let lastRow = rows.length-1;
-					console.log(rows.length)
-					console.log(lastRow)
+	
                     var guild = bot.guilds.cache.get('667073733445287966');
                     if(guild && guild.channels.cache.get('686475381800566794'))
                     {
-                        guild.channels.cache.get('686475381800566794').send("New Member Application!")
-                        guild.channels.cache.get('686475381800566794').send("http://tiny.cc/applyResponse")            
-
-                        guild.channels.cache.get('686475381800566794').send("Timestamp: " + rows[lastRow][0])
-                        guild.channels.cache.get('686475381800566794').send("Player ID Name: " + rows[lastRow][1])
+                        const memberApp = new Discord.MessageEmbed()              
+                        .setTitle("New Member Application (Click here)")
+                        .setURL('http://tiny.cc/applyResponse')
+                        .setColor('#597E8D')     
+                        .addField('Player ID Name: '+ '***' + rows[lastRow][1] + '***' , "\u200b")
+            
+                        guild.channels.cache.get('686475381800566794').send(memberApp);
               
                     }
       
 				
-				
+					let valueInputOption = "USER_ENTERED";
+                    let myValue = (++rows[0][16]);    
+                    let values = [[myValue]];
+                   
+                    let resource = {
+                        values,
+                    };
 			   
-					
 					googleAuth.authorize()
 					.then((auth) => {		
 							sheetsApi.spreadsheets.values.update({
 								auth: auth,
 								spreadsheetId: SPREADSHEET_ID,
 								range: "Form Responses 1!Q2",
-								values: (rows[0][16] + 1)
+                                valueInputOption,
+                                resource
 							}, function (err, response) 
 								{
 								if (err) 
@@ -144,31 +152,17 @@ function sendMessage()
 									console.log('The API returned an error: ' + err);
 									return console.log(err);
 								}							
-							});							  
+							});								  
 						
 					
 					}).catch((err) => 
 					{
 						console.log('auth error', err);
 				  	});
-				
-					
-
-
-
-
-
 
 
 			   }
-			   else
-			   {
-					var guild = bot.guilds.cache.get('667073733445287966');
-					if(guild && guild.channels.cache.get('686475381800566794'))
-					{
-						guild.channels.cache.get('686475381800566794').send("No New Application!")	  
-					}
-			   }
+			   
           });
       })
       .catch((err) => {
